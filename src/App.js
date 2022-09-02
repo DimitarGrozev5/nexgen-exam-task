@@ -61,12 +61,11 @@ function App() {
         />
       </div>
       <form>
-        <input type="number" />
         <input type="checkbox" />
         <input type="radio" />
         <input type="tel" />
-        <input type="range" />
         <input type="file" />
+        <input type="range" />
         <input type="url" />
 
         <input type="date" />
