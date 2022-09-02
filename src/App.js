@@ -1,23 +1,64 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import TextInput from "./components/TextInput";
+import { useState } from "react";
+import EmailInput from "./components/EmailInput";
+import PasswordInput from "./components/PaswordInput";
 
 function App() {
+  const [val, setVal] = useState("");
+  const valHandler = (e) => {
+    setVal(e.target.value);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <TextInput
+          label="Test text input:"
+          error="Some validation error!!"
+          placeholder="Enter your value"
+          value={val}
+          onChange={valHandler}
+        />
+      </div>
+      <div>
+        <EmailInput
+          label="Test email input:"
+          error=""
+          placeholder="Enter your value"
+          value={val}
+          onChange={valHandler}
+        />
+      </div>
+      <div>
+        <PasswordInput
+          label="Test password input:"
+          error=""
+          placeholder="Enter your value"
+          value={val}
+          onChange={valHandler}
+        />
+      </div>
+      <form>
+        <input type="password" />
+        <input type="checkbox" />
+        <input type="file" />
+        <input type="radio" />
+        <input type="search" />
+        <input type="tel" />
+        <input type="url" />
+        <input type="number" />
+        <input type="range" />
+
+        <input type="date" />
+        <input type="datetime-local" />
+        <input type="month" />
+        <input type="time" />
+        <input type="week" />
+
+        <input type="color" />
+      </form>
     </div>
   );
 }
