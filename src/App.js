@@ -6,6 +6,7 @@ import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PaswordInput";
 import SearchInput from "./components/SearchInput";
 import NumberInput from "./components/NumberInput";
+import CheckboxInput from "./components/CheckboxInput";
 
 function App() {
   const [val, setVal] = useState("");
@@ -54,6 +55,15 @@ function App() {
       <div>
         <NumberInput
           label="Test number input:"
+          error=""
+          placeholder="Enter your value"
+          value={val}
+          onChange={valHandler}
+        />
+      </div>
+      <div>
+        <CheckboxInput
+          label="Test checkbox input:"
           error=""
           placeholder="Enter your value"
           value={val}
