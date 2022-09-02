@@ -51,7 +51,6 @@ function App() {
         />
       </div>
       <form>
-        <input type="search" />
         <input type="checkbox" />
         <input type="file" />
         <input type="radio" />

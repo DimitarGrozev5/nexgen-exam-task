@@ -22,6 +22,8 @@ function PasswordInput({
   const inputType = asText ? "text" : "password";
   const buttonCaption = asText ? "Hide" : "Show";
 
+  const showButton = !!value.length;
+
   const inputStyles = [styles.input];
   if (error?.length) {
     inputStyles.push(styles.error);
@@ -42,7 +44,9 @@ function PasswordInput({
           minLength={minLength}
           readOnly={readOnly}
         />
-        <button onClick={toggleType}>{buttonCaption}</button>
+        {showButton && (
+          <button onClick={toggleType}>{buttonCaption}</button>
+        )}
       </div>
     </Label>
   );
