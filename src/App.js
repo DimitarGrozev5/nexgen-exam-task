@@ -7,6 +7,7 @@ import PasswordInput from "./components/PaswordInput";
 import SearchInput from "./components/SearchInput";
 import NumberInput from "./components/NumberInput";
 import CheckboxInput from "./components/CheckboxInput";
+import RadioInput from "./components/RadioInput";
 
 function App() {
   const [val, setVal] = useState("");
@@ -64,15 +65,24 @@ function App() {
       <div>
         <CheckboxInput
           label="Test checkbox input:"
-          error=""
-          placeholder="Enter your value"
+          value={val}
+          onChange={valHandler}
+        />
+      </div>
+      <div>
+        <RadioInput
+          label="Test radio input:"
+          radioName="test-radio"
+          options={[
+            { val: "1", label: "1_" },
+            { val: "2", label: "2_" },
+            { val: "3", label: "3_" },
+          ]}
           value={val}
           onChange={valHandler}
         />
       </div>
       <form>
-        <input type="checkbox" />
-        <input type="radio" />
         <input type="tel" />
         <input type="file" />
         <input type="range" />
