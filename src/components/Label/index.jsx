@@ -1,12 +1,18 @@
 import styles from "./InputWrapper.module.css";
 
 function Label({ label, error, children }) {
+  const inputStyles = [styles["input-container"]];
+  if (error && error.length) {
+    inputStyles.push(styles.error);
+  }
+  const inputClassNames = inputStyles.join(" ");
+
   return (
     <label className={styles.label}>
       {label}
-      <div className={styles["input-container"]}>
+      <div className={inputClassNames}>
         {children}
-        {error?.length && <div className={styles.error}>{error}</div>}
+        {error && error.length && <div className={styles.error}>{error}</div>}
       </div>
     </label>
   );

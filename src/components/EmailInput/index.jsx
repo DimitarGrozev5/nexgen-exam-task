@@ -14,20 +14,12 @@ function EmailInput({
   value,
   onChange,
 }) {
-  const inputStyles = [styles.input];
-  if (error?.length) {
-    inputStyles.push(styles.error);
-  }
-
-  const inputClassName = inputStyles.join(" ");
-
   return (
     <Label label={label} error={error}>
       <input
         value={value}
         onChange={onChange}
         type="email"
-        className={inputClassName}
         placeholder={placeholder}
         maxLength={maxLength}
         minLength={minLength}

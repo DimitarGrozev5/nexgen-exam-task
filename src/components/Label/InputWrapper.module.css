@@ -14,10 +14,15 @@
   color: red;
 }
 
-.input-container > input {
+.input-container input {
   padding: 0.5rem;
 }
 
-.input-container > input:focus {
+.input-container.error input {
+  border: 1px solid red;
+  color: red;
+}
+
+.input-container.error input:focus {
   outline-color: red;
 }
