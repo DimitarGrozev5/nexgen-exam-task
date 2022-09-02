@@ -13,7 +13,7 @@ function RadioInput({
   const changeHandler = (val) => () => onChange(val);
 
   const mapOptionToRadio = ({ val, label }) => (
-    <Label label={label} textFirst={false}>
+    <Label label={label} textFirst={false} key={val}>
       <input
         checked={val === value}
         onChange={changeHandler(val)}
