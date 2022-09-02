@@ -12,7 +12,6 @@ function Label({ label, error, children, textFirst = true }) {
     inputStyles.add("single-line");
   }
   const inputClassNames = inputStyles.className;
-  console.log(inputClassNames.className);
 
   // Setup label html structure
   let labelContent = (
