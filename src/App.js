@@ -5,6 +5,7 @@ import { useState } from "react";
 import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PaswordInput";
 import SearchInput from "./components/SearchInput";
+import NumberInput from "./components/NumberInput";
 
 function App() {
   const [val, setVal] = useState("");
@@ -50,14 +51,23 @@ function App() {
           onChange={valHandler}
         />
       </div>
+      <div>
+        <NumberInput
+          label="Test number input:"
+          error=""
+          placeholder="Enter your value"
+          value={val}
+          onChange={valHandler}
+        />
+      </div>
       <form>
+        <input type="number" />
         <input type="checkbox" />
-        <input type="file" />
         <input type="radio" />
         <input type="tel" />
-        <input type="url" />
-        <input type="number" />
         <input type="range" />
+        <input type="file" />
+        <input type="url" />
 
         <input type="date" />
         <input type="datetime-local" />

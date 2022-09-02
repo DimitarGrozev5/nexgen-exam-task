@@ -1,0 +1,27 @@
+.number-container {
+  display: flex;
+}
+
+.number-container > input[type="number"]::-webkit-inner-spin-button,
+.number-container > input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.number-container > input {
+  flex-grow: 1;
+}
+
+.number-container > button {
+  width: 2rem;
+  border: 1px solid black;
+  background-color: #fff;
+}
+
+.number-container > button.left {
+  border-right: none;
+}
+
+.number-container > button.right {
+  border-left: none;
+}
