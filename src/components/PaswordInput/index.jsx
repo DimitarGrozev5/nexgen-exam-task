@@ -14,6 +14,8 @@ function PasswordInput({
   value,
   onChange,
 }) {
+  const changeHandler = (event) => onChange(event.target.value);
+
   // State for controlling password input visibility
   const [asText, setAsText] = useState(false);
   const toggleType = () => setAsText((t) => !t);
@@ -32,7 +34,7 @@ function PasswordInput({
       <div className={styles["input-container"]}>
         <input
           value={value}
-          onChange={onChange}
+          onChange={changeHandler}
           type={inputType}
           className={inputClassName}
           placeholder={placeholder}

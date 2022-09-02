@@ -14,11 +14,13 @@ function TextInput({
   value,
   onChange,
 }) {
+  const changeHandler = (event) => onChange(event.target.value);
+
   return (
     <Label label={label} error={error}>
       <input
         value={value}
-        onChange={onChange}
+        onChange={changeHandler}
         type="text"
         placeholder={placeholder}
         maxLength={maxLength}
