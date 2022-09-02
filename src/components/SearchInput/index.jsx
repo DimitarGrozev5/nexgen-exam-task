@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Label from "../Label";
 import styles from "./SearchInput.module.css";
 
