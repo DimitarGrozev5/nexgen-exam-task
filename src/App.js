@@ -9,9 +9,10 @@ import NumberInput from "./components/NumberInput";
 import CheckboxInput from "./components/CheckboxInput";
 import RadioInput from "./components/RadioInput";
 import TelInput from "./components/TelInput";
+import DateInput from "./components/DateInput";
 
 function App() {
-  const [val, setVal] = useState("");
+  const [val, setVal] = useState(new Date());
   const valHandler = (v) => {
     setVal(v);
   };
@@ -92,12 +93,23 @@ function App() {
           onChange={valHandler}
         />
       </div>
+      <div>
+        <DateInput
+          label="Test Date input:"
+          error=""
+          placeholder="Enter your value"
+          value={val}
+          onChange={valHandler}
+        />
+      </div>
       <form>
+        <input type="date" />
+        <textarea>fdfd</textarea>
+
         <input type="file" />
         <input type="range" />
         <input type="url" />
 
-        <input type="date" />
         <input type="datetime-local" />
         <input type="month" />
         <input type="time" />
