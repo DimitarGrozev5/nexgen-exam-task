@@ -4,11 +4,12 @@ import TextInput from "./components/TextInput";
 import { useState } from "react";
 import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PaswordInput";
+import SearchInput from "./components/SearchInput";
 
 function App() {
   const [val, setVal] = useState("");
-  const valHandler = (e) => {
-    setVal(e.target.value);
+  const valHandler = (v) => {
+    setVal(v);
   };
 
   return (
@@ -40,12 +41,20 @@ function App() {
           onChange={valHandler}
         />
       </div>
+      <div>
+        <SearchInput
+          label="Test search input:"
+          error=""
+          placeholder="Enter your value"
+          value={val}
+          onChange={valHandler}
+        />
+      </div>
       <form>
-        <input type="password" />
+        <input type="search" />
         <input type="checkbox" />
         <input type="file" />
         <input type="radio" />
-        <input type="search" />
         <input type="tel" />
         <input type="url" />
         <input type="number" />
