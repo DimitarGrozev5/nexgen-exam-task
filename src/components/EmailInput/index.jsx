@@ -1,5 +1,4 @@
 import Label from "../Label";
-import styles from "./EmailInput.module.css";
 
 function EmailInput({
   label,

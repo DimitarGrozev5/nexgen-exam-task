@@ -1,5 +1,4 @@
 import Label from "../Label";
-import styles from "./TextInput.module.css";
 
 function TextInput({
   label,
