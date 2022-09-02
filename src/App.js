@@ -8,6 +8,7 @@ import SearchInput from "./components/SearchInput";
 import NumberInput from "./components/NumberInput";
 import CheckboxInput from "./components/CheckboxInput";
 import RadioInput from "./components/RadioInput";
+import TelInput from "./components/TelInput";
 
 function App() {
   const [val, setVal] = useState("");
@@ -82,8 +83,16 @@ function App() {
           onChange={valHandler}
         />
       </div>
+      <div>
+        <TelInput
+          label="Test telephone input:"
+          error=""
+          placeholder="Enter your value"
+          value={val}
+          onChange={valHandler}
+        />
+      </div>
       <form>
-        <input type="tel" />
         <input type="file" />
         <input type="range" />
         <input type="url" />
