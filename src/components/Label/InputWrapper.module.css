@@ -10,6 +10,10 @@
   flex-direction: column;
 }
 
+.input-container.single-line {
+  flex-direction: row;
+}
+
 .error {
   color: red;
 }

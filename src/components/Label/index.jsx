@@ -1,21 +1,41 @@
 import styles from "./InputWrapper.module.css";
+import { Style } from "../../util/styles";
 
-function Label({ label, error, children }) {
-  const inputStyles = [styles["input-container"]];
+function Label({ label, error, children, textFirst = true }) {
+  // Setup input styles
+  const inputStyles = new Style(styles);
+  inputStyles.add("input-container");
   if (error && error.length) {
-    inputStyles.push(styles.error);
+    inputStyles.add("error");
   }
-  const inputClassNames = inputStyles.join(" ");
+  if (!textFirst) {
+    inputStyles.add("single-line");
+  }
+  const inputClassNames = inputStyles.className;
+  console.log(inputClassNames.className);
 
-  return (
-    <label className={styles.label}>
+  // Setup label html structure
+  let labelContent = (
+    <>
       {label}
       <div className={inputClassNames}>
         {children}
         {error && error.length && <div className={styles.error}>{error}</div>}
       </div>
-    </label>
+    </>
   );
+  if (!textFirst) {
+    labelContent = (
+      <>
+        <div className={inputClassNames}>
+          {children}
+          {label}
+        </div>
+      </>
+    );
+  }
+
+  return <label className={styles.label}>{labelContent}</label>;
 }
 
 export default Label;
