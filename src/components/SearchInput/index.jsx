@@ -1,10 +1,13 @@
+import { useForm } from "../../hooks/form-hook";
+import { Style } from "../../util/styles";
 import Label from "../Label";
 import styles from "./SearchInput.module.css";
 
 function SearchInput({
   label,
   name,
-  error,
+  errorMsg = "",
+  validator = () => true,
 
   placeholder,
   maxLength,
@@ -14,26 +17,48 @@ function SearchInput({
   value,
   onChange,
 }) {
-  const changeHandler = (event) => onChange(event.target.value);
+  /**
+   * Pass data to Form hook. If the Input is in a Form component,
+   * the Form hook will control this Input. If the Input is NOT in
+   * a Form component, it will be controlled by it's parent
+   * through the value and onChange props
+   */
+  const { inputValue, inputOnChange, inputError } = useForm(
+    "email",
+    name,
+    value,
+    onChange,
+    validator
+  );
+
+  // Setup a change handler, to transform the Input value
+  const changeHandler = (event) => inputOnChange(event.target.value);
+
+  // Setup error message
+  const errMsg = inputError ? errorMsg : "";
 
   // Helper function for clearing the field
-  const clearField = () => onChange("");
+  const clearField = () => inputOnChange("");
 
-  const showClearButton = !!value.length;
+  const showClearButton = !!inputValue.length;
 
-  const inputStyles = [styles.input];
-  if (error?.length) {
-    inputStyles.push(styles.error);
+  const inputStyles = new Style(styles);
+  inputStyles.add("input");
+  if (inputError) {
+    inputStyles.add("error");
+  }
+  if (showClearButton) {
+    inputStyles.add("with-button");
   }
 
-  const inputClassName = inputStyles.join(" ");
+  const inputClassName = inputStyles.className;
 
   return (
-    <Label label={label} error={error}>
+    <Label label={label} error={errMsg}>
       <div className={styles["input-container"]}>
         <input
           name={name}
-          value={value}
+          value={inputValue}
           onChange={changeHandler}
           type="text"
           className={inputClassName}

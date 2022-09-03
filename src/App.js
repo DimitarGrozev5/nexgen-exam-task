@@ -55,10 +55,9 @@ function App() {
         <FormGroup>
           <SearchInput
             label="Test search input:"
-            error=""
+            name="form-search"
+            errorMsg="Some search error!"
             placeholder="Enter your value"
-            value={val}
-            onChange={valHandler}
           />
 
           <NumberInput
