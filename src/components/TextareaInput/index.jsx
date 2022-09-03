@@ -1,13 +1,15 @@
 import Label from "../Label";
 
-function TelInput({
+function TextareaInput({
   label,
   error,
 
   placeholder,
+  disabled,
   maxLength,
   minLength,
   readOnly,
+  spellCheck,
 
   value,
   onChange,
@@ -16,17 +18,19 @@ function TelInput({
 
   return (
     <Label label={label} error={error}>
-      <input
+      <textarea
         value={value}
         onChange={changeHandler}
-        type="tel"
+        type="text"
         placeholder={placeholder}
+        disabled={disabled}
         maxLength={maxLength}
         minLength={minLength}
         readOnly={readOnly}
-      />
+        spellCheck={spellCheck}
+      ></textarea>
     </Label>
   );
 }
 
-export default TelInput;
+export default TextareaInput;

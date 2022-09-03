@@ -10,6 +10,7 @@ import CheckboxInput from "./components/CheckboxInput";
 import RadioInput from "./components/RadioInput";
 import TelInput from "./components/TelInput";
 import DateInput from "./components/DateInput";
+import TextareaInput from "./components/TextareaInput";
 
 function App() {
   const [val, setVal] = useState(new Date());
@@ -102,9 +103,16 @@ function App() {
           onChange={valHandler}
         />
       </div>
+      <div>
+        <TextareaInput
+          label="Test text input:"
+          error="Some validation error!!"
+          placeholder="Enter your value"
+          value={val}
+          onChange={valHandler}
+        />
+      </div>
       <form>
-        <input type="date" />
-        <textarea>fdfd</textarea>
 
         <input type="file" />
         <input type="range" />
