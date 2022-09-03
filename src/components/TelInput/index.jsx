@@ -2,6 +2,7 @@ import Label from "../Label";
 
 function TelInput({
   label,
+  name,
   error,
 
   placeholder,
@@ -17,6 +18,7 @@ function TelInput({
   return (
     <Label label={label} error={error}>
       <input
+        name={name}
         value={value}
         onChange={changeHandler}
         type="tel"

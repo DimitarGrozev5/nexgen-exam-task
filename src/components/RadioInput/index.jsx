@@ -4,7 +4,7 @@ import styles from "./RadioInput.module.css";
 function RadioInput({
   label,
 
-  radioName,
+  name,
   options,
 
   value,
@@ -17,7 +17,7 @@ function RadioInput({
       <input
         checked={val === value}
         onChange={changeHandler(val)}
-        name={radioName}
+        name={name}
         className={styles.radio}
         type="radio"
       />

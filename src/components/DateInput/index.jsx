@@ -3,6 +3,7 @@ import Label from "../Label";
 
 function DateInput({
   label,
+  name,
   error,
 
   max,
@@ -17,6 +18,7 @@ function DateInput({
   return (
     <Label label={label} error={error}>
       <input
+        name={name}
         value={dateToInput(value)}
         onChange={changeHandler}
         type="date"

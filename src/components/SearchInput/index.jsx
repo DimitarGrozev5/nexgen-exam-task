@@ -3,6 +3,7 @@ import styles from "./SearchInput.module.css";
 
 function SearchInput({
   label,
+  name,
   error,
 
   placeholder,
@@ -31,6 +32,7 @@ function SearchInput({
     <Label label={label} error={error}>
       <div className={styles["input-container"]}>
         <input
+          name={name}
           value={value}
           onChange={changeHandler}
           type="text"
@@ -40,7 +42,11 @@ function SearchInput({
           minLength={minLength}
           readOnly={readOnly}
         />
-        {showClearButton && <button type="button" onClick={clearField}>Clear</button>}
+        {showClearButton && (
+          <button type="button" onClick={clearField}>
+            Clear
+          </button>
+        )}
       </div>
     </Label>
   );

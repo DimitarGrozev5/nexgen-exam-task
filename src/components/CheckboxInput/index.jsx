@@ -3,6 +3,7 @@ import styles from "./CheckboxInput.module.css";
 
 function CheckboxInput({
   label,
+  name,
 
   value,
   onChange,
@@ -12,6 +13,7 @@ function CheckboxInput({
   return (
     <Label label={label} textFirst={false}>
       <input
+        name={name}
         checked={value}
         onChange={changeHandler}
         className={styles.checkbox}

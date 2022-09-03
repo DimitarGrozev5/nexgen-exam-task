@@ -2,6 +2,7 @@ import Label from "../Label";
 
 function TextareaInput({
   label,
+  name,
   error,
 
   placeholder,
@@ -19,6 +20,7 @@ function TextareaInput({
   return (
     <Label label={label} error={error}>
       <textarea
+        name={name}
         value={value}
         onChange={changeHandler}
         type="text"

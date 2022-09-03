@@ -4,6 +4,7 @@ import styles from "./PasswordInput.module.css";
 
 function PasswordInput({
   label,
+  name,
   error,
 
   placeholder,
@@ -35,6 +36,7 @@ function PasswordInput({
     <Label label={label} error={error}>
       <div className={styles["input-container"]}>
         <input
+          name={name}
           value={value}
           onChange={changeHandler}
           type={inputType}
@@ -45,7 +47,9 @@ function PasswordInput({
           readOnly={readOnly}
         />
         {showButton && (
-          <button type="button" onClick={toggleType}>{buttonCaption}</button>
+          <button type="button" onClick={toggleType}>
+            {buttonCaption}
+          </button>
         )}
       </div>
     </Label>

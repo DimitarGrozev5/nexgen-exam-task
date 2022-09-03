@@ -3,6 +3,7 @@ import styles from "./NumberInput.module.css";
 
 function NumberInput({
   label,
+  name,
   error,
 
   placeholder,
@@ -33,6 +34,7 @@ function NumberInput({
           -
         </button>
         <input
+          name={name}
           value={value}
           onChange={changeHandler}
           type="number"
