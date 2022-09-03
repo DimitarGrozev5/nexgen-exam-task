@@ -13,6 +13,7 @@ import DateInput from "./components/DateInput";
 import TextareaInput from "./components/TextareaInput";
 import Form from "./components/Form";
 import FormGroup from "./components/FormGroup";
+import Button from "./components/Button";
 
 function App() {
   const [val, setVal] = useState(new Date());
@@ -111,8 +112,9 @@ function App() {
             onChange={valHandler}
           />
         </FormGroup>
+        <Button type="submit">Submit</Button>
       </Form>
-      <form>
+      {/* <form>
         <input type="file" />
         <input type="range" />
         <input type="url" />
@@ -123,7 +125,7 @@ function App() {
         <input type="week" />
 
         <input type="color" />
-      </form>
+      </form> */}
     </div>
   );
 }
