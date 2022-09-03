@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import TextInput from "./components/TextInput";
-import { useState } from "react";
+import { useId, useState } from "react";
 import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PaswordInput";
 import SearchInput from "./components/SearchInput";
@@ -21,9 +21,11 @@ function App() {
     setVal(v);
   };
 
+  const formId = useId();
+
   return (
     <div className="App">
-      <Form>
+      <Form id={formId}>
         <FormGroup>
           <TextInput
             label="Test text input:"

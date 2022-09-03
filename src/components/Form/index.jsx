@@ -1,9 +1,10 @@
+import { FormContext } from "./form-context";
 import styles from "./Form.module.css";
 
-function Form({ onSubmit, children }) {
+function Form({ id, onSubmit, children }) {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
-      {children}
+      <FormContext.Provider value={id}>{children}</FormContext.Provider>
     </form>
   );
 }
