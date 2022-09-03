@@ -40,7 +40,7 @@ function EmailInput({
     <Label label={label} error={errMsg}>
       <input
         name={name}
-        value={value}
+        value={inputValue}
         onChange={changeHandler}
         type="email"
         placeholder={placeholder}

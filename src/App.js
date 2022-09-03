@@ -45,10 +45,10 @@ function App() {
 
           <PasswordInput
             label="Test password input:"
-            error=""
+            name="form-password"
+            errorMsg="Some password error!"
+            validator={(val) => val.length > 0}
             placeholder="Enter your value"
-            value={val}
-            onChange={valHandler}
           />
         </FormGroup>
 
