@@ -18,8 +18,14 @@
   color: red;
 }
 
-.input-container input {
+.input-container input,
+.input-container textarea {
   padding: 0.5rem;
+}
+
+.input-container textarea {
+  min-height: 5rem;
+  resize: vertical;
 }
 
 .input-container.error input,
