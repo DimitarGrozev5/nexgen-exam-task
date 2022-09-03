@@ -7,9 +7,9 @@ function Form({ id, onSubmit, children }) {
   const formOnSubmit = (event) => {
     event.preventDefault();
     console.log(formData.isValid());
-    // onSubmit();
+    console.log(formData.getVals());
   };
-  
+
   return (
     <form className={styles.form} onSubmit={formOnSubmit}>
       <FormContext.Provider value={id}>{children}</FormContext.Provider>

@@ -57,7 +57,10 @@ export const useForm = (inputType, inputName, value, onChange, validator) => {
 };
 
 export const useFormData = (formId) => {
-  const get = () => allForms[formId];
+  const getVals = () =>
+    Object.entries(allForms[formId]).reduce((result, [key, val]) => {
+      return { ...result, [key]: val.value };
+    }, {});
 
   const isValid = () =>
     Object.values(allForms[formId]).reduce((v, input) => {
@@ -70,5 +73,5 @@ export const useFormData = (formId) => {
       return v && true;
     }, true);
 
-  return { get, isValid };
+  return { getVals, isValid };
 };

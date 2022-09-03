@@ -29,18 +29,18 @@ function App() {
         <FormGroup>
           <TextInput
             label="Test text input:"
-            error="Some validation error!!"
+            name="form-text"
+            errorMsg="Some validation error!!"
+            validator={(val) => val.length > 0}
             placeholder="Enter your value"
-            value={val}
-            onChange={valHandler}
           />
 
           <EmailInput
             label="Test email input:"
-            error=""
+            name="form-email"
+            errorMsg="Some email error!"
+            validator={(val) => val.length > 0}
             placeholder="Enter your value"
-            value={val}
-            onChange={valHandler}
           />
 
           <PasswordInput
