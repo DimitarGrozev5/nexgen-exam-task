@@ -40,7 +40,7 @@ function SearchInput({
           minLength={minLength}
           readOnly={readOnly}
         />
-        {showClearButton && <button onClick={clearField}>Clear</button>}
+        {showClearButton && <button type="button" onClick={clearField}>Clear</button>}
       </div>
     </Label>
   );

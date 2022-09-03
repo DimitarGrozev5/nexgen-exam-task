@@ -29,7 +29,7 @@ function NumberInput({
   return (
     <Label label={label} error={error}>
       <div className={styles["number-container"]}>
-        <button onClick={increment(-1)} className={styles.left}>
+        <button type="button" onClick={increment(-1)} className={styles.left}>
           -
         </button>
         <input
@@ -45,7 +45,7 @@ function NumberInput({
           readOnly={readOnly}
           spellCheck={spellCheck}
         />
-        <button onClick={increment(1)} className={styles.right}>
+        <button type="button" onClick={increment(1)} className={styles.right}>
           +
         </button>
       </div>

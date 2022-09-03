@@ -45,7 +45,7 @@ function PasswordInput({
           readOnly={readOnly}
         />
         {showButton && (
-          <button onClick={toggleType}>{buttonCaption}</button>
+          <button type="button" onClick={toggleType}>{buttonCaption}</button>
         )}
       </div>
     </Label>
