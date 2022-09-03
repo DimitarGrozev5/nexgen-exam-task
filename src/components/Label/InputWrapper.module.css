@@ -22,11 +22,13 @@
   padding: 0.5rem;
 }
 
-.input-container.error input {
+.input-container.error input,
+.input-container.error textarea {
   border: 1px solid red;
   color: red;
 }
 
-.input-container.error input:focus {
+.input-container.error input:focus,
+.input-container.error textarea:focus {
   outline-color: red;
 }
