@@ -11,6 +11,8 @@ import RadioInput from "./components/RadioInput";
 import TelInput from "./components/TelInput";
 import DateInput from "./components/DateInput";
 import TextareaInput from "./components/TextareaInput";
+import Form from "./components/Form";
+import FormGroup from "./components/FormGroup";
 
 function App() {
   const [val, setVal] = useState(new Date());
@@ -20,98 +22,96 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <TextInput
-          label="Test text input:"
-          error="Some validation error!!"
-          placeholder="Enter your value"
-          value={val}
-          onChange={valHandler}
-        />
-      </div>
-      <div>
-        <EmailInput
-          label="Test email input:"
-          error=""
-          placeholder="Enter your value"
-          value={val}
-          onChange={valHandler}
-        />
-      </div>
-      <div>
-        <PasswordInput
-          label="Test password input:"
-          error=""
-          placeholder="Enter your value"
-          value={val}
-          onChange={valHandler}
-        />
-      </div>
-      <div>
-        <SearchInput
-          label="Test search input:"
-          error=""
-          placeholder="Enter your value"
-          value={val}
-          onChange={valHandler}
-        />
-      </div>
-      <div>
-        <NumberInput
-          label="Test number input:"
-          error=""
-          placeholder="Enter your value"
-          value={val}
-          onChange={valHandler}
-        />
-      </div>
-      <div>
-        <CheckboxInput
-          label="Test checkbox input:"
-          value={val}
-          onChange={valHandler}
-        />
-      </div>
-      <div>
-        <RadioInput
-          label="Test radio input:"
-          radioName="test-radio"
-          options={[
-            { val: "1", label: "1_" },
-            { val: "2", label: "2_" },
-            { val: "3", label: "3_" },
-          ]}
-          value={val}
-          onChange={valHandler}
-        />
-      </div>
-      <div>
-        <TelInput
-          label="Test telephone input:"
-          error=""
-          placeholder="Enter your value"
-          value={val}
-          onChange={valHandler}
-        />
-      </div>
-      <div>
-        <DateInput
-          label="Test Date input:"
-          error=""
-          placeholder="Enter your value"
-          value={val}
-          onChange={valHandler}
-        />
-      </div>
-      <div>
-        <TextareaInput
-          label="Test text input:"
-          error="Some validation error!!"
-          placeholder="Enter your value"
-          value={val}
-          onChange={valHandler}
-        />
-      </div>
+      <Form>
+        <FormGroup>
+          <TextInput
+            label="Test text input:"
+            error="Some validation error!!"
+            placeholder="Enter your value"
+            value={val}
+            onChange={valHandler}
+          />
+
+          <EmailInput
+            label="Test email input:"
+            error=""
+            placeholder="Enter your value"
+            value={val}
+            onChange={valHandler}
+          />
+
+          <PasswordInput
+            label="Test password input:"
+            error=""
+            placeholder="Enter your value"
+            value={val}
+            onChange={valHandler}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <SearchInput
+            label="Test search input:"
+            error=""
+            placeholder="Enter your value"
+            value={val}
+            onChange={valHandler}
+          />
+
+          <NumberInput
+            label="Test number input:"
+            error=""
+            placeholder="Enter your value"
+            value={val}
+            onChange={valHandler}
+          />
+
+          <CheckboxInput
+            label="Test checkbox input:"
+            value={val}
+            onChange={valHandler}
+          />
+        </FormGroup>
+        <FormGroup>
+          <RadioInput
+            label="Test radio input:"
+            radioName="test-radio"
+            options={[
+              { val: "1", label: "1_" },
+              { val: "2", label: "2_" },
+              { val: "3", label: "3_" },
+            ]}
+            value={val}
+            onChange={valHandler}
+          />
+
+          <TelInput
+            label="Test telephone input:"
+            error=""
+            placeholder="Enter your value"
+            value={val}
+            onChange={valHandler}
+          />
+
+          <DateInput
+            label="Test Date input:"
+            error=""
+            placeholder="Enter your value"
+            value={val}
+            onChange={valHandler}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <TextareaInput
+            label="Test text input:"
+            error="Some validation error!!"
+            placeholder="Enter your value"
+            value={val}
+            onChange={valHandler}
+          />
+        </FormGroup>
+      </Form>
       <form>
         <input type="file" />
         <input type="range" />
