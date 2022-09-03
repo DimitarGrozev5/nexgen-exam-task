@@ -113,7 +113,6 @@ function App() {
         />
       </div>
       <form>
-
         <input type="file" />
         <input type="range" />
         <input type="url" />
