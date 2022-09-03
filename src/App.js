@@ -56,16 +56,13 @@ function App() {
           <SearchInput
             label="Test search input:"
             name="form-search"
-            errorMsg="Some search error!"
             placeholder="Enter your value"
           />
 
           <NumberInput
             label="Test number input:"
-            error=""
+            name="form-number"
             placeholder="Enter your value"
-            value={val}
-            onChange={valHandler}
           />
 
           <CheckboxInput
