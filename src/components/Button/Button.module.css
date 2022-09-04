@@ -10,4 +10,12 @@
 
 .button {
   padding: 0.5rem 1rem;
+
+  color: #590ba2;
+  border: 1px solid #590ba2;
+  border-radius: 5px;
+
+  background-color: #b1e2ef;
+
+  cursor: pointer;
 }
