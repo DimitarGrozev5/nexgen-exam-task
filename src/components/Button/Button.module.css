@@ -3,6 +3,8 @@
   margin: 0.5rem;
   padding: 0.5rem;
 
+  grid-column: 1 / 4;
+
   text-align: right;
 }
 

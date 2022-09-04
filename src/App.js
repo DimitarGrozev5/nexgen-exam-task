@@ -1,6 +1,6 @@
 import "./App.css";
 import TextInput from "./components/TextInput";
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
 import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PaswordInput";
 import SearchInput from "./components/SearchInput";
@@ -19,9 +19,23 @@ function App() {
   const [multipleEmails, setMultipleEmails] = useState([]);
   const formId = useId();
 
+  const submitHandler = (data) => {
+    fetch(
+      "https://www.toptal.com/developers/postbin/1662293684099-0788799582514",
+      {
+        method: "POST",
+        // mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+  };
+
   return (
     <div className="App">
-      <Form id={formId}>
+      <Form id={formId} onSubmit={submitHandler}>
         <FormGroup>
           <TextInput
             label="Test text input:"
@@ -112,7 +126,7 @@ function App() {
               label="Test text 2 input:"
               name="form-textarea-extra"
               errorMsg="Some textarea error!"
-              validator={(val) => val > 0}
+              validator={(val) => val.length > 0}
               placeholder="Enter your value"
             />
           )}
@@ -131,8 +145,6 @@ function App() {
       <EmailInput
         label="Test email input:"
         name="form1-email"
-        // errorMsg="Some email error!"
-        // validator={(val) => val.length > 0}
         placeholder="Enter your value"
         multiple
         value={multipleEmails}
