@@ -25,7 +25,7 @@ function TextareaInput({
    * If the parent has passed value and onChange props,
    * the Input will be controlled not by the Form, but by the parent
    */
-  const { inputValue, inputOnChange, inputError } = useForm(
+  const { inputValue, inputOnChange, inputError, inputOnBlur } = useForm(
     initValue,
     name,
     value,
@@ -45,6 +45,7 @@ function TextareaInput({
         name={name}
         value={inputValue}
         onChange={changeHandler}
+        onBlur={inputOnBlur}
         type="text"
         placeholder={placeholder}
         disabled={disabled}

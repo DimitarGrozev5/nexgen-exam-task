@@ -17,6 +17,29 @@ import { FormContext } from "../components/Form/form-context";
  */
 const allForms = {};
 
+// GetVals function returns the values of the form inputs
+const getVals = (formId) =>
+  Object.entries(allForms[formId]).reduce((result, [key, val]) => {
+    return { ...result, [key]: val.value };
+  }, {});
+
+/**
+ * The *validate* function tests the validity of the targeted input
+ * 
+ * It invokes the input validator function, by passing an object,
+ * containing all of the forms input names and values as key-value pairs
+ * 
+ * In this way the Input components accept a *validator* function,
+ * that uses the *this* keyword, to reference other inputs in the same form
+ */
+const validate = (formId, inputName) => {
+  const validator = allForms[formId][inputName].validator;
+  const ctx = getVals(formId);
+  const isValid = validator.call(ctx, allForms[formId][inputName].value);
+
+  return isValid;
+};
+
 /**
  * The useForm hook receive data about an Input Component
  * It checks if the Input Component is inside a Form Component
@@ -30,7 +53,7 @@ export const useForm = (initValue, inputName, value, onChange, validator) => {
   /**
    * Get the formId for the Input Component that is calling the hook
    * If the formId is null then the Input Component is not in a Form
-  */
+   */
   const formId = useContext(FormContext);
 
   /**
@@ -42,6 +65,7 @@ export const useForm = (initValue, inputName, value, onChange, validator) => {
   // Setup state for the Input element
   const [inputValue, setInputValue] = useState(initValue);
   const [showInputError, setShowInputError] = useState(false);
+  const [isTouched, setIsTouched] = useState(false);
 
   // Register the Input in the allForms dictionery when the component mounts
   useEffect(() => {
@@ -52,11 +76,18 @@ export const useForm = (initValue, inputName, value, onChange, validator) => {
       allForms[formId] = {};
     }
     if (!(inputName in allForms[formId])) {
+      /**
+       * Input state values and setters are stored
+       * so they can be used from other parts of the program
+       * to read the data and to force state changes for the input
+       */
       allForms[formId][inputName] = {
         value: inputValue,
         setValue: setInputValue,
         showError: showInputError,
         setShowInputError,
+        isTouched: isTouched,
+        setIsTouched,
         validator,
       };
     }
@@ -78,23 +109,39 @@ export const useForm = (initValue, inputName, value, onChange, validator) => {
       inputValue: value,
       inputOnChange: onChange,
       inputError: false,
+      inputonBlur: () => {},
     };
   }
 
   // Setup change handler function for the Input Component
   const inputOnChange = (val) => {
+    const input = allForms[formId][inputName];
     setInputValue(val);
-    allForms[formId][inputName].value = val;
+    input.value = val;
+
+    if (input.isTouched) {
+      const isValid = validate(formId, inputName);
+      input.setShowInputError(!isValid);
+    }
+  };
+
+  // Setup blur handler function for validation purposes
+  const inputOnBlur = () => {
+    setIsTouched(true);
+    const isValid = validate(formId, inputName);
+    allForms[formId][inputName].setShowInputError(!isValid);
   };
 
   const returnValue = formId ? inputValue : value;
   const returnOnChange = formId ? inputOnChange : onChange;
   const returnError = formId ? showInputError : false;
+  const returnOnBlur = formId ? inputOnBlur : () => {};
 
   return {
     inputValue: returnValue,
     inputOnChange: returnOnChange,
     inputError: returnError,
+    inputOnBlur: returnOnBlur,
   };
 };
 
@@ -102,19 +149,13 @@ export const useForm = (initValue, inputName, value, onChange, validator) => {
  * useFormData hook gives access to the form state
  */
 export const useFormData = (formId) => {
-  // GetVals function returns the values of the form inputs
-  const getVals = () =>
-    Object.entries(allForms[formId]).reduce((result, [key, val]) => {
-      return { ...result, [key]: val.value };
-    }, {});
-
   // isValid function validates all of the form inputs and returns the overall form validity
   const isValid = () => {
-    // Get the current state of the form inputs to pass as execution context for validator function
-    const stateContext = getVals();
+    return Object.entries(allForms[formId]).reduce((v, [inputName, input]) => {
+      input.setIsTouched(true);
 
-    return Object.values(allForms[formId]).reduce((v, input) => {
-      const isV = input.validator.call(stateContext, input.value);
+      const isV = validate(formId, inputName);
+      // const isV = input.validator.call(stateContext, input.value);
 
       if (!isV) {
         input.setShowInputError(true);
@@ -126,5 +167,5 @@ export const useFormData = (formId) => {
     }, true);
   };
 
-  return { getVals, isValid };
+  return { getVals: () => getVals(formId), isValid };
 };

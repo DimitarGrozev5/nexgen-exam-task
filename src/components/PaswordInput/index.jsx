@@ -27,7 +27,7 @@ function PasswordInput({
    * If the parent has passed value and onChange props,
    * the Input will be controlled not by the Form, but by the parent
    */
-  const { inputValue, inputOnChange, inputError } = useForm(
+  const { inputValue, inputOnChange, inputError, inputOnBlur } = useForm(
     initValue,
     name,
     value,
@@ -69,6 +69,7 @@ function PasswordInput({
           name={name}
           value={inputValue}
           onChange={changeHandler}
+          onBlur={inputOnBlur}
           type={inputType}
           className={inputClassName}
           placeholder={placeholder}
@@ -77,7 +78,11 @@ function PasswordInput({
           readOnly={readOnly}
         />
         {showButton && (
-          <button type="button" onClick={toggleType}>
+          <button
+            className={inputError && styles.error}
+            type="button"
+            onClick={toggleType}
+          >
             {buttonCaption}
           </button>
         )}

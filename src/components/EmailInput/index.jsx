@@ -26,7 +26,7 @@ function EmailInput({
    * the Input will be controlled not by the Form, but by the parent
    */
   const defaultInitValue = initValue || (multiple ? [] : "");
-  const { inputValue, inputOnChange, inputError } = useForm(
+  const { inputValue, inputOnChange, inputError, inputOnBlur } = useForm(
     defaultInitValue,
     name,
     value,
@@ -47,6 +47,7 @@ function EmailInput({
         name={name}
         value={inputValue}
         onChange={changeHandler}
+        onBlur={inputOnBlur}
         type="email"
         placeholder={placeholder}
         maxLength={maxLength}
@@ -66,6 +67,7 @@ function EmailInput({
         errorMsg={errMsg}
         value={inputValue}
         onChange={inputOnChange}
+        onBlur={inputOnBlur}
       />
     );
   }
