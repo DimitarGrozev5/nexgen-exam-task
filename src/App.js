@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import TextInput from "./components/TextInput";
 import { useId, useState } from "react";
@@ -16,10 +15,7 @@ import FormGroup from "./components/FormGroup";
 import Button from "./components/Button";
 
 function App() {
-  const [val, setVal] = useState(new Date());
-  const valHandler = (v) => {
-    setVal(v);
-  };
+  const [addExtraTextarea, setAddExtraTextarea] = useState(false);
 
   const formId = useId();
 
@@ -103,6 +99,21 @@ function App() {
             validator={(val) => val > 0}
             placeholder="Enter your value"
           />
+          <CheckboxInput
+            label="Add an extra textarea"
+            name="extra-checkbox"
+            value={addExtraTextarea}
+            onChange={setAddExtraTextarea}
+          />
+          {addExtraTextarea && (
+            <TextareaInput
+              label="Test text 2 input:"
+              name="form-textarea-extra"
+              errorMsg="Some textarea error!"
+              validator={(val) => val > 0}
+              placeholder="Enter your value"
+            />
+          )}
         </FormGroup>
         <Button type="submit">Submit</Button>
       </Form>

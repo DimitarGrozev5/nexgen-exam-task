@@ -15,7 +15,7 @@ function CheckboxInput({
    * a Form component, it will be controlled by it's parent
    * through the value and onChange props
    */
-  const { inputValue, inputOnChange, inputError } = useForm(
+  const { inputValue, inputOnChange } = useForm(
     "email",
     name,
     value,

@@ -31,6 +31,12 @@ export const useForm = (inputType, inputName, value, onChange, validator) => {
   // If the formId then the Input Component is not in a Form
   const formId = useContext(FormContext);
 
+  /**
+   * If the consumer has provided a value and onChange,
+   * it means that he wants to control the Input not through the Form
+   */
+  const formControl = value === undefined && onChange === undefined;
+
   // Setup initial values for the Input, depending on the input type
   const initValue = {
     checkbox: false,
@@ -49,9 +55,9 @@ export const useForm = (inputType, inputName, value, onChange, validator) => {
   const [inputValue, setInputValue] = useState(initValue);
   const [showInputError, setShowInputError] = useState(false);
 
-  // Register the Input in the allForms dictionery above
+  // Register the Input in the allForms dictionery when the component mounts
   useEffect(() => {
-    if (!formId) {
+    if (!formId || !formControl) {
       return;
     }
     if (!(formId in allForms)) {
@@ -59,21 +65,26 @@ export const useForm = (inputType, inputName, value, onChange, validator) => {
     }
     if (!(inputName in allForms[formId])) {
       allForms[formId][inputName] = {
-        value: initValue,
+        value: inputValue,
         setValue: setInputValue,
         showError: showInputError,
         setShowInputError,
         validator,
       };
     }
-  }, [formId, inputName, initValue, showInputError, validator]);
+
+    // Unregister the component in allForms before a rerender or dismount
+    return () => {
+      delete allForms[formId][inputName];
+    };
+  }, [formId, inputName, inputValue, showInputError, validator, formControl]);
 
   /**
    * If the consumer has provided a value and onChange,
    * it means that he wants to controll the Input not through the Form,
    * so just return the values
    */
-  if (value && onChange) {
+  if (!formControl) {
     return {
       inputValue: value,
       inputOnChange: onChange,
