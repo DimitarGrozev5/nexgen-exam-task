@@ -11,6 +11,7 @@
 
   border: 1px solid #590ba2;
   border-radius: 10000px !important;
+  cursor: pointer;
 }
 
 .radio:checked::after {
