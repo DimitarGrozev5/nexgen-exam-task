@@ -16,7 +16,7 @@ function CheckboxInput({
    * through the value and onChange props
    */
   const { inputValue, inputOnChange } = useForm(
-    "email",
+    "checkbox",
     name,
     value,
     onChange,
