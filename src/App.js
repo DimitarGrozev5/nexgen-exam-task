@@ -77,7 +77,7 @@ function App() {
           <SearchInput
             label="Test search input:"
             name="form-search"
-            placeholder="Enter your value"
+            placeholder="Start typing..."
           />
 
           <NumberInput

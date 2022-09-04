@@ -6,7 +6,8 @@
 .input-container input {
   flex-grow: 1;
 
-  border: 1px solid black;
+  border: 1px solid #590ba2;
+  border-radius: 5px;
 
   padding-right: 3rem;
 }
@@ -23,8 +24,15 @@
 
   width: 3rem;
 
-  border: 1px solid fieldtext;
+  color: #590ba2;
+
+  border: 1px solid #590ba2;
+  border-radius: 5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
   border-left: none;
 
-  background-color: #fff;
+  background-color: transparent;
+
+  cursor: pointer;
 }
