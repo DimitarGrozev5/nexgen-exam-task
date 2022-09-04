@@ -39,37 +39,37 @@ function App() {
       <Form id={formId} onSubmit={submitHandler}>
         <FormGroup>
           <TextInput
-            label="Username (text input):"
+            label="Name (text input):"
             name="form-text"
             errorMsg="Please enter a value!!"
             validator={(val) => val.length > 0}
-            placeholder="Enter your value"
+            placeholder="First and Last"
           />
 
           <EmailInput
-            label="Test email input:"
+            label="Email (email input):"
             name="form-email"
-            errorMsg="Some email error!"
+            errorMsg="Please enter a valid email!!"
             validator={(val) => val.length > 0}
-            placeholder="Enter your value"
+            placeholder="email@example.com"
           />
 
           <PasswordInput
-            label="Test password input:"
+            label="Password (password input):"
             name="form-password"
-            errorMsg="Some password error!"
+            errorMsg="Please enter a password!"
             validator={(val) => val.length > 0}
-            placeholder="Enter your value"
+            placeholder="**********"
           />
 
           <PasswordInput
-            label="Test password input:"
+            label="Reenter password:"
             name="form-password-2"
-            errorMsg="Some password error!"
+            errorMsg="Passwords don't match!"
             validator={function (val) {
               return this["form-password"] === val;
             }}
-            placeholder="Enter your value"
+            placeholder="**********"
           />
         </FormGroup>
 

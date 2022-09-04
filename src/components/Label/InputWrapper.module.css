@@ -23,8 +23,12 @@
 .input-container input,
 .input-container textarea {
   padding: 0.5rem;
+
+  color: #590ba2;
+
   border: 1px solid #590ba2;
   border-radius: 5px;
+  
   background-color: rgba(255, 255, 255, 0.8);
 }
 
@@ -44,7 +48,7 @@
   color: red;
 }
 
-.input-container.error input:focus,
-.input-container.error textarea:focus {
-  outline-color: red;
+.input-container input:focus,
+.input-container textarea:focus {
+  outline: none;
 }
