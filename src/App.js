@@ -98,10 +98,10 @@ function App() {
         <FormGroup>
           <TextareaInput
             label="Test text input:"
-            error="Some validation error!!"
+            name="form-textarea"
+            errorMsg="Some textarea error!"
+            validator={(val) => val > 0}
             placeholder="Enter your value"
-            value={val}
-            onChange={valHandler}
           />
         </FormGroup>
         <Button type="submit">Submit</Button>
