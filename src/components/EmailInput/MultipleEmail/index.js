@@ -26,6 +26,10 @@ function MultipleEmail({
     ) {
       event.preventDefault();
       const newEmail = text.replace(",", "").trim().toLowerCase();
+      if (newEmail.length === 0) {
+        return;
+      }
+
       const newList = value.filter((e) => e.toLowerCase() !== newEmail);
       onChange([...newList, newEmail]);
       setText("");
@@ -64,7 +68,7 @@ function MultipleEmail({
       <Label label={label} error={errorMsg}></Label>
       <div className={styles["email-container"]}>
         {value.map(enteredEmail)}
-          
+
         <input
           className={styles["email__input"]}
           name={name}

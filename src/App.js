@@ -102,25 +102,24 @@ function App() {
           />
 
           <TelInput
-            label="Test telephone input:"
+            label="Give me your telephone (tel input):"
             name="form-tel"
-            errorMsg="Some tel error!"
+            errorMsg="Invalid phone!"
             validator={(val) => val.length > 0}
-            placeholder="Enter your value"
+            placeholder="088 123 1234"
           />
 
           <DateInput
-            label="Test Date input:"
+            label="Date of birth (date input):"
             name="form-date"
-            errorMsg="Some date error!"
+            errorMsg="Please enter date!"
             validator={(val) => !!val}
-            placeholder="Enter your value"
           />
         </FormGroup>
 
         <FormGroup>
           <TextareaInput
-            label="Test text input:"
+            label="What's on your mind? (textarea):"
             name="form-textarea"
             errorMsg="Some textarea error!"
             validator={(val) => val.length > 0}
@@ -134,7 +133,7 @@ function App() {
           />
           {addExtraTextarea && (
             <TextareaInput
-              label="Test text 2 input:"
+              label="Testing dynamic adding and removing of input elements:"
               name="form-textarea-extra"
               errorMsg="Some textarea error!"
               validator={(val) => val.length > 0}
@@ -143,10 +142,10 @@ function App() {
           )}
 
           <EmailInput
-            label="Test email input:"
+            label="I wan't two emails (multiple email input):"
             name="form1-email"
-            errorMsg="Some email error!"
-            validator={(val) => val.length > 0}
+            errorMsg="More email for spam please!"
+            validator={(val) => val.length > 1}
             placeholder="Enter your value"
             multiple
           />
