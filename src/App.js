@@ -16,7 +16,7 @@ import Button from "./components/Button";
 
 function App() {
   const [addExtraTextarea, setAddExtraTextarea] = useState(false);
-
+  const [multipleEmails, setMultipleEmails] = useState([]);
   const formId = useId();
 
   return (
@@ -119,6 +119,16 @@ function App() {
         </FormGroup>
         <Button type="submit">Submit</Button>
       </Form>
+      <EmailInput
+        label="Test email input:"
+        name="form1-email"
+        // errorMsg="Some email error!"
+        // validator={(val) => val.length > 0}
+        placeholder="Enter your value"
+        multiple
+        value={multipleEmails}
+        onChange={setMultipleEmails}
+      />
       {/* <form>
         <input type="file" />
         <input type="range" />
