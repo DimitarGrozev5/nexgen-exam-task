@@ -35,12 +35,13 @@ function App() {
 
   return (
     <div className="App">
+      <h1 className="h1">Enter your profile information</h1>
       <Form id={formId} onSubmit={submitHandler}>
         <FormGroup>
           <TextInput
-            label="Test text input:"
+            label="Username (text input):"
             name="form-text"
-            errorMsg="Some validation error!!"
+            errorMsg="Please enter a value!!"
             validator={(val) => val.length > 0}
             placeholder="Enter your value"
           />
@@ -152,14 +153,7 @@ function App() {
         </FormGroup>
         <Button type="submit">Submit</Button>
       </Form>
-      <EmailInput
-        label="Test email input:"
-        name="form1-email"
-        placeholder="Enter your value"
-        multiple
-        value={multipleEmails}
-        onChange={setMultipleEmails}
-      />
+
       {/* <form>
         <input type="file" />
         <input type="range" />
