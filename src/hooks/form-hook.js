@@ -1,11 +1,37 @@
 import { useContext, useEffect, useState } from "react";
 import { FormContext } from "../components/Form/form-context";
 
+/**
+ * allForms object/dictionery contains all of the forms in the application
+ * Each form is stored as a key-value pair - [formId]: inputElements
+ *
+ * The inputElements object stores data about the input elements of the specific form
+ * Each input element is a key-value pair - [inputName]: inputElementData
+ *
+ * The inputElementData has the following properties:
+ * value - the current value of the input
+ * setValue - useState setter function for the value
+ * showError - boolean flag that indicates wheter to show an error message
+ * setShowInputError - useState setter for showError
+ * validator - validator function for the input
+ */
 const allForms = {};
 
+/**
+ * The useForm hook receive data about an Input Component
+ * It checks if the Input Component is inside a Form Component
+ * by checking the context trough useContext
+ * If so then it registers the input in the allForms dictionery above
+ *
+ * If the Input Component has value and onChange props provided
+ * then the Input control is left to those values.
+ */
 export const useForm = (inputType, inputName, value, onChange, validator) => {
+  // Get the formId for the Input Component that is calling the hook
+  // If the formId then the Input Component is not in a Form
   const formId = useContext(FormContext);
 
+  // Setup initial values for the Input, depending on the input type
   const initValue = {
     checkbox: false,
     date: undefined,
@@ -19,9 +45,11 @@ export const useForm = (inputType, inputName, value, onChange, validator) => {
     text: "",
   }[inputType];
 
+  // Setup state for the Input element
   const [inputValue, setInputValue] = useState(initValue);
   const [showInputError, setShowInputError] = useState(false);
 
+  // Register the Input in the allForms dictionery above
   useEffect(() => {
     if (!formId) {
       return;
@@ -40,6 +68,20 @@ export const useForm = (inputType, inputName, value, onChange, validator) => {
     }
   }, [formId, inputName, initValue, showInputError, validator]);
 
+  /**
+   * If the consumer has provided a value and onChange,
+   * it means that he wants to controll the Input not through the Form,
+   * so just return the values
+   */
+  if (value && onChange) {
+    return {
+      inputValue: value,
+      inputOnChange: onChange,
+      inputError: false,
+    };
+  }
+
+  // Setup change handler function for the Input Component
   const inputOnChange = (val) => {
     setInputValue(val);
     allForms[formId][inputName].value = val;
