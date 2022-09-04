@@ -60,6 +60,16 @@ function App() {
             validator={(val) => val.length > 0}
             placeholder="Enter your value"
           />
+
+          <PasswordInput
+            label="Test password input:"
+            name="form-password-2"
+            errorMsg="Some password error!"
+            validator={function (val) {
+              return this["form-password"] === val;
+            }}
+            placeholder="Enter your value"
+          />
         </FormGroup>
 
         <FormGroup>
