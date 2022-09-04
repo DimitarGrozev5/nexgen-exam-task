@@ -65,10 +65,7 @@ function App() {
             placeholder="Enter your value"
           />
 
-          <CheckboxInput
-            label="Test checkbox input:"
-            name="form-checkbox"
-          />
+          <CheckboxInput label="Test checkbox input:" name="form-checkbox" />
         </FormGroup>
         <FormGroup>
           <RadioInput
@@ -83,10 +80,10 @@ function App() {
 
           <TelInput
             label="Test telephone input:"
-            error=""
+            name="form-tel"
+            errorMsg="Some tel error!"
+            validator={(val) => val.length > 0}
             placeholder="Enter your value"
-            value={val}
-            onChange={valHandler}
           />
 
           <DateInput
