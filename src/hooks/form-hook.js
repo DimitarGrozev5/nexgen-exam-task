@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { FormContext } from "../components/Form/form-context";
 
 /**
- * allForms object/dictionery contains all of the forms in the application
+ * allForms is an object/dictionery and contains all of the forms in the application
  * Each form is stored as a key-value pair - [formId]: inputElements
  *
  * The inputElements object stores data about the input elements of the specific form
@@ -27,8 +27,10 @@ const allForms = {};
  * then the Input control is left to those values.
  */
 export const useForm = (initValue, inputName, value, onChange, validator) => {
-  // Get the formId for the Input Component that is calling the hook
-  // If the formId then the Input Component is not in a Form
+  /**
+   * Get the formId for the Input Component that is calling the hook
+   * If the formId is null then the Input Component is not in a Form
+  */
   const formId = useContext(FormContext);
 
   /**
@@ -60,6 +62,7 @@ export const useForm = (initValue, inputName, value, onChange, validator) => {
     }
 
     // Unregister the component in allForms before a rerender or dismount
+    // This helps with forms that have dynamic content
     return () => {
       delete allForms[formId][inputName];
     };
