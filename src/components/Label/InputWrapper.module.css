@@ -21,15 +21,26 @@
   color: red;
 }
 
-.input-container input,
+.input-container input[type="text"],
+.input-container input[type="email"],
+.input-container input[type="password"],
+.input-container input[type="search"],
+.input-container input[type="number"],
+.input-container input[type="tel"],
+.input-container input[type="date"],
 .input-container textarea {
   padding: 0.5rem;
 
   color: #590ba2;
+  min-width: 0px;
+  width: 100%;
+}
 
+.input-container input,
+.input-container textarea {
   border: 1px solid #590ba2;
   border-radius: 5px;
-  
+
   background-color: rgba(255, 255, 255, 0.8);
 }
 
