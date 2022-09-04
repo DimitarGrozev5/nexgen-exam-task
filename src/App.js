@@ -67,21 +67,18 @@ function App() {
 
           <CheckboxInput
             label="Test checkbox input:"
-            value={val}
-            onChange={valHandler}
+            name="form-checkbox"
           />
         </FormGroup>
         <FormGroup>
           <RadioInput
             label="Test radio input:"
-            radioName="test-radio"
+            name="test-radio"
             options={[
               { val: "1", label: "1_" },
               { val: "2", label: "2_" },
               { val: "3", label: "3_" },
             ]}
-            value={val}
-            onChange={valHandler}
           />
 
           <TelInput

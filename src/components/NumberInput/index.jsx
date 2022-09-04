@@ -1,5 +1,4 @@
 import { useForm } from "../../hooks/form-hook";
-import { Style } from "../../util/styles";
 import Label from "../Label";
 import styles from "./NumberInput.module.css";
 
@@ -28,7 +27,7 @@ function NumberInput({
    * through the value and onChange props
    */
   const { inputValue, inputOnChange, inputError } = useForm(
-    "email",
+    "number",
     name,
     value,
     onChange,
@@ -36,6 +35,7 @@ function NumberInput({
   );
 
   // Setup a change handler, to transform the Input value
+  // TODO: Allow the user to input just a minus sign
   const changeHandler = (event) => inputOnChange(+event.target.value);
 
   // Setup error message

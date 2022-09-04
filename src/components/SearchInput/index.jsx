@@ -24,7 +24,7 @@ function SearchInput({
    * through the value and onChange props
    */
   const { inputValue, inputOnChange, inputError } = useForm(
-    "email",
+    "search",
     name,
     value,
     onChange,

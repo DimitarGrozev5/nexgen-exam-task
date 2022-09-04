@@ -26,7 +26,7 @@ function PasswordInput({
    * through the value and onChange props
    */
   const { inputValue, inputOnChange, inputError } = useForm(
-    "email",
+    "password",
     name,
     value,
     onChange,
