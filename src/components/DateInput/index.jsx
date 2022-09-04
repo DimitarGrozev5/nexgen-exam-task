@@ -22,7 +22,7 @@ function DateInput({
    * through the value and onChange props
    */
   const { inputValue, inputOnChange, inputError } = useForm(
-    "email",
+    "date",
     name,
     value,
     onChange,
