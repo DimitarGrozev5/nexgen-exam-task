@@ -19,7 +19,7 @@ function DateInput({
   /**
    * 
    */
-  const { inputValue, inputOnChange, inputError } = useForm(
+  const { inputValue, inputOnChange, inputError, inputOnBlur } = useForm(
     initValue,
     name,
     value,
@@ -40,6 +40,7 @@ function DateInput({
         name={name}
         value={dateToInput(inputValue)}
         onChange={changeHandler}
+          onBlur={inputOnBlur}
         type="date"
         max={max}
         min={min}

@@ -12,6 +12,7 @@ function MultipleEmail({
 
   value,
   onChange,
+  onBlur,
 }) {
   // Setup text input value and changeHandler
   const [text, setText] = useState("");
@@ -44,6 +45,12 @@ function MultipleEmail({
       event.preventDefault();
       addNewEmail();
     }
+  };
+
+  // Funtion that executes on blur
+  const blurHandler = (event) => {
+    addNewEmail();
+    onBlur();
   };
 
   // Function that removes a specific email from the list
@@ -91,7 +98,7 @@ function MultipleEmail({
           type="email"
           placeholder={placeholder}
           multiple
-          onBlur={addNewEmail}
+          onBlur={blurHandler}
         />
       </div>
     </>
