@@ -16,7 +16,10 @@ import Button from "./components/Button";
 
 function App() {
   const [addExtraTextarea, setAddExtraTextarea] = useState(false);
-  const [multipleEmails, setMultipleEmails] = useState([]);
+  const [multipleEmails, setMultipleEmails] = useState([
+    "dim5@mail.bg",
+    "dim6@mail.bg",
+  ]);
   const formId = useId();
 
   return (

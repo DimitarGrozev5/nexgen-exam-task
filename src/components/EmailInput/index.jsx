@@ -1,6 +1,6 @@
 import { useForm } from "../../hooks/form-hook";
 import Label from "../Label";
-import styles from "./EmailInput.module.css";
+import MultipleEmail from "./MultipleEmail";
 
 function EmailInput({
   label,
@@ -57,19 +57,13 @@ function EmailInput({
   // Render this for multiple email input fields
   if (multiple) {
     emailComponent = (
-      <Label label={label} error={errMsg}>
-        <div className={styles["email-container"]}>
-          <div className={styles["emails-entered"]}></div>
-          <input
-            name={name}
-            value={inputValue}
-            onChange={changeHandler}
-            type="email"
-            placeholder={placeholder}
-            multiple={multiple}
-          />
-        </div>
-      </Label>
+      <MultipleEmail
+        label={label}
+        name={name}
+        errorMsg={errMsg}
+        value={inputValue}
+        onChange={inputOnChange}
+      />
     );
   }
 
