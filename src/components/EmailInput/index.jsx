@@ -1,5 +1,6 @@
 import { useForm } from "../../hooks/form-hook";
 import Label from "../Label";
+import MultipleEmail from "./MultipleEmail";
 
 function EmailInput({
   label,
@@ -22,8 +23,9 @@ function EmailInput({
    * a Form component, it will be controlled by it's parent
    * through the value and onChange props
    */
+  const emailType = multiple ? "multiEmail" : "email";
   const { inputValue, inputOnChange, inputError } = useForm(
-    "email",
+    emailType,
     name,
     value,
     onChange,
@@ -36,7 +38,8 @@ function EmailInput({
   // Setup error message
   const errMsg = inputError ? errorMsg : "";
 
-  return (
+  // Render this for a simple email input field
+  let emailComponent = (
     <Label label={label} error={errMsg}>
       <input
         name={name}
@@ -51,6 +54,21 @@ function EmailInput({
       />
     </Label>
   );
+
+  // Render this for multiple email input fields
+  if (multiple) {
+    emailComponent = (
+      <MultipleEmail
+        label={label}
+        name={name}
+        errorMsg={errMsg}
+        value={inputValue}
+        onChange={inputOnChange}
+      />
+    );
+  }
+
+  return emailComponent;
 }
 
 export default EmailInput;

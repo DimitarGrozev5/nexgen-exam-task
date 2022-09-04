@@ -42,6 +42,7 @@ export const useForm = (inputType, inputName, value, onChange, validator) => {
     checkbox: false,
     date: undefined,
     email: "",
+    multiEmail: [],
     number: "",
     password: "",
     radio: undefined,
@@ -120,16 +121,22 @@ export const useFormData = (formId) => {
     }, {});
 
   // isValid function validates all of the form inputs and returns the overall form validity
-  const isValid = () =>
-    Object.values(allForms[formId]).reduce((v, input) => {
-      const isV = input.validator(input.value);
+  const isValid = () => {
+    // Get the current state of the form inputs to pass as execution context for validator function
+    const stateContext = getVals();
+
+    return Object.values(allForms[formId]).reduce((v, input) => {
+      const isV = input.validator.call(stateContext, input.value);
+
       if (!isV) {
         input.setShowInputError(true);
         return false;
       }
+      
       input.setShowInputError(false);
       return v && true;
     }, true);
+  };
 
   return { getVals, isValid };
 };

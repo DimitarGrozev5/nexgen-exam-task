@@ -1,6 +1,7 @@
 .form {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
-  row-gap: 1rem;
+
+  padding: 0.5rem;
 }
