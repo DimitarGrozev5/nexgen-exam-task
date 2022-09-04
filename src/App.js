@@ -90,14 +90,14 @@ function App() {
         </FormGroup>
         <FormGroup>
           <RadioInput
-            label="Test radio input:"
+            label="Select one of these options!:"
             name="test-radio"
             errorMsg="Some radio error!"
             validator={(val) => !!val}
             options={[
-              { val: "1", label: "1_" },
-              { val: "2", label: "2_" },
-              { val: "3", label: "3_" },
+              { val: "ok", label: "OK" },
+              { val: "no", label: "No" },
+              { val: "maybe", label: "Maybe later" },
             ]}
           />
 
