@@ -88,10 +88,10 @@ function App() {
 
           <DateInput
             label="Test Date input:"
-            error=""
+            name="form-date"
+            errorMsg="Some date error!"
+            validator={(val) => !!val}
             placeholder="Enter your value"
-            value={val}
-            onChange={valHandler}
           />
         </FormGroup>
 
