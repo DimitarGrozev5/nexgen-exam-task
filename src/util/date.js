@@ -4,7 +4,7 @@ export const dateToInput = (date) => {
   const dt = new Date(date);
 
   if (dt.toString() === "Invalid Date") {
-    return undefined;
+    return "";
   }
 
   const y = lz(dt.getFullYear(), 4);
