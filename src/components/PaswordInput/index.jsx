@@ -78,7 +78,11 @@ function PasswordInput({
           readOnly={readOnly}
         />
         {showButton && (
-          <button type="button" onClick={toggleType}>
+          <button
+            className={inputError && styles.error}
+            type="button"
+            onClick={toggleType}
+          >
             {buttonCaption}
           </button>
         )}

@@ -156,7 +156,7 @@ function App() {
           )}
 
           <EmailInput
-            label="I wan't two emails (multiple email input):"
+            label="I want two emails (multiple email input):"
             name="form1-email"
             errorMsg="More email for spam please!"
             validator={(val) => val.length > 1}
