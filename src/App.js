@@ -75,18 +75,18 @@ function App() {
 
         <FormGroup>
           <SearchInput
-            label="Test search input:"
+            label="Type a query (search input):"
             name="form-search"
             placeholder="Start typing..."
           />
 
           <NumberInput
-            label="Test number input:"
+            label="Enter a number (number input):"
             name="form-number"
             placeholder="Enter your value"
           />
 
-          <CheckboxInput label="Test checkbox input:" name="form-checkbox" />
+          <CheckboxInput label="Check this box! (checkbox input)" name="form-checkbox" />
         </FormGroup>
         <FormGroup>
           <RadioInput
