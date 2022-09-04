@@ -76,14 +76,19 @@ export const useForm = (initValue, inputName, value, onChange, validator) => {
       allForms[formId] = {};
     }
     if (!(inputName in allForms[formId])) {
+      /**
+       * Input state values and setters are stored
+       * so they can be used from other parts of the program
+       * to read the data and to force state changes for the input
+       */
       allForms[formId][inputName] = {
         value: inputValue,
         setValue: setInputValue,
         showError: showInputError,
         setShowInputError,
-        validator,
         isTouched: isTouched,
         setIsTouched,
+        validator,
       };
     }
 
@@ -146,9 +151,6 @@ export const useForm = (initValue, inputName, value, onChange, validator) => {
 export const useFormData = (formId) => {
   // isValid function validates all of the form inputs and returns the overall form validity
   const isValid = () => {
-    // Get the current state of the form inputs to pass as execution context for validator function
-    const stateContext = getVals(formId);
-
     return Object.entries(allForms[formId]).reduce((v, [inputName, input]) => {
       input.setIsTouched(true);
 
