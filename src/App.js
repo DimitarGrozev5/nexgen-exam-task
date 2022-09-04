@@ -90,7 +90,7 @@ function App() {
         </FormGroup>
         <FormGroup>
           <RadioInput
-            label="Select one of these options!:"
+            label="Select one of these options! (radio input):"
             name="test-radio"
             errorMsg="Some radio error!"
             validator={(val) => !!val}
