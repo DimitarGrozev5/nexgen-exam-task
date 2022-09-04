@@ -17,6 +17,17 @@ function MultipleEmail({
   const inputHandler = (event) => {
     setText(event.target.value);
   };
+
+  const addNewEmail = () => {
+    const newEmail = text.replace(",", "").trim().toLowerCase();
+    if (newEmail.length === 0) {
+      return;
+    }
+
+    const newList = value.filter((e) => e.toLowerCase() !== newEmail);
+    onChange([...newList, newEmail]);
+    setText("");
+  };
   const keyDownHandler = (event) => {
     if (
       event.code === "Space" ||
@@ -25,14 +36,7 @@ function MultipleEmail({
       event.code === "Comma"
     ) {
       event.preventDefault();
-      const newEmail = text.replace(",", "").trim().toLowerCase();
-      if (newEmail.length === 0) {
-        return;
-      }
-
-      const newList = value.filter((e) => e.toLowerCase() !== newEmail);
-      onChange([...newList, newEmail]);
-      setText("");
+      addNewEmail();
     }
   };
 
@@ -78,6 +82,7 @@ function MultipleEmail({
           type="email"
           placeholder={placeholder}
           multiple
+          onBlur={addNewEmail}
         />
       </div>
     </>
