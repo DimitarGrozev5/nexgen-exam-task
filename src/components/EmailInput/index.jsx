@@ -18,10 +18,11 @@ function EmailInput({
   onChange,
 }) {
   /**
-   * Pass data to Form hook. If the Input is in a Form component,
-   * the Form hook will control this Input. If the Input is NOT in
-   * a Form component, it will be controlled by it's parent
-   * through the value and onChange props
+   * Check if the Input is inside a Form Component.
+   * If so, the Input can be controlled by the Form
+   *
+   * If the parent has passed value and onChange props,
+   * the Input will be controlled not by the Form, but by the parent
    */
   const emailType = multiple ? "multiEmail" : "email";
   const { inputValue, inputOnChange, inputError } = useForm(

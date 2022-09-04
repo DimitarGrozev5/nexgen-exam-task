@@ -20,10 +20,11 @@ function PasswordInput({
   onChange,
 }) {
   /**
-   * Pass data to Form hook. If the Input is in a Form component,
-   * the Form hook will control this Input. If the Input is NOT in
-   * a Form component, it will be controlled by it's parent
-   * through the value and onChange props
+   * Check if the Input is inside a Form Component.
+   * If so, the Input can be controlled by the Form
+   *
+   * If the parent has passed value and onChange props,
+   * the Input will be controlled not by the Form, but by the parent
    */
   const { inputValue, inputOnChange, inputError } = useForm(
     "password",
@@ -42,11 +43,14 @@ function PasswordInput({
   // State for controlling password input visibility
   const [asText, setAsText] = useState(false);
   const toggleType = () => setAsText((t) => !t);
+
+  // Setup labels, based on the password visibility
   const inputType = asText ? "text" : "password";
   const buttonCaption = asText ? "Hide" : "Show";
 
   const showButton = !!inputValue.length;
 
+  // Setup input css styling
   const inputStyles = new Style(styles);
   inputStyles.add("input");
   if (inputError) {
@@ -55,7 +59,6 @@ function PasswordInput({
   if (showButton) {
     inputStyles.add("with-button");
   }
-
   const inputClassName = inputStyles.className;
 
   return (

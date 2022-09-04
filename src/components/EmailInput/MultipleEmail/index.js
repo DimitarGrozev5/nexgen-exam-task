@@ -13,21 +13,27 @@ function MultipleEmail({
   value,
   onChange,
 }) {
+  // Setup text input value and changeHandler
   const [text, setText] = useState("");
   const inputHandler = (event) => {
     setText(event.target.value);
   };
 
+  // Function that takes the text from the text input and adds it to the list of emails
   const addNewEmail = () => {
-    const newEmail = text.replace(",", "").trim().toLowerCase();
-    if (newEmail.length === 0) {
+    if (text.length === 0) {
       return;
     }
 
+    const newEmail = text.replace(",", "").trim().toLowerCase();
+
+    // If the email already exists in the list, remove it before adding it again
     const newList = value.filter((e) => e.toLowerCase() !== newEmail);
     onChange([...newList, newEmail]);
     setText("");
   };
+
+  // Function that checks if the user has hit a specific key and then adds the new email to the list
   const keyDownHandler = (event) => {
     if (
       event.code === "Space" ||
@@ -40,14 +46,17 @@ function MultipleEmail({
     }
   };
 
+  // Function that removes a specific email from the list
   const removeEmailHandler = (email) => () => {
     onChange(value.filter((e) => e !== email));
   };
 
-  const enteredEmail = (e) => {
+  // Function that transforms the list of emails in to a list of Components
+  const emailTextToComponent = (e) => {
     const emailStyles = new Style(styles);
     emailStyles.add("email__entered");
 
+    // If the current email is invalid, add the *invalid* class to the Component
     if (!/^.+@.+\..+$/.test(e)) {
       emailStyles.add("email__entered-invalid");
     }
@@ -71,7 +80,7 @@ function MultipleEmail({
     <>
       <Label label={label} error={errorMsg}></Label>
       <div className={styles["email-container"]}>
-        {value.map(enteredEmail)}
+        {value.map(emailTextToComponent)}
 
         <input
           className={styles["email__input"]}

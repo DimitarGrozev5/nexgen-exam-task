@@ -16,10 +16,7 @@ function DateInput({
   onChange,
 }) {
   /**
-   * Pass data to Form hook. If the Input is in a Form component,
-   * the Form hook will control this Input. If the Input is NOT in
-   * a Form component, it will be controlled by it's parent
-   * through the value and onChange props
+   * 
    */
   const { inputValue, inputOnChange, inputError } = useForm(
     "date",
