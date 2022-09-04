@@ -2,9 +2,9 @@ import { lz } from "./leadingZeros";
 
 export const dateToInput = (date) => {
   const dt = new Date(date);
-  
+
   if (dt.toString() === "Invalid Date") {
-    return dt.toString();
+    return undefined;
   }
 
   const y = lz(dt.getFullYear(), 4);

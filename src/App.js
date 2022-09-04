@@ -1,7 +1,6 @@
-import logo from "./logo.svg";
 import "./App.css";
 import TextInput from "./components/TextInput";
-import { useState } from "react";
+import { useId, useState } from "react";
 import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PaswordInput";
 import SearchInput from "./components/SearchInput";
@@ -16,101 +15,107 @@ import FormGroup from "./components/FormGroup";
 import Button from "./components/Button";
 
 function App() {
-  const [val, setVal] = useState(new Date());
-  const valHandler = (v) => {
-    setVal(v);
-  };
+  const [addExtraTextarea, setAddExtraTextarea] = useState(false);
+
+  const formId = useId();
 
   return (
     <div className="App">
-      <Form>
+      <Form id={formId}>
         <FormGroup>
           <TextInput
             label="Test text input:"
-            error="Some validation error!!"
+            name="form-text"
+            errorMsg="Some validation error!!"
+            validator={(val) => val.length > 0}
             placeholder="Enter your value"
-            value={val}
-            onChange={valHandler}
           />
 
           <EmailInput
             label="Test email input:"
-            error=""
+            name="form-email"
+            errorMsg="Some email error!"
+            validator={(val) => val.length > 0}
             placeholder="Enter your value"
-            value={val}
-            onChange={valHandler}
           />
 
           <PasswordInput
             label="Test password input:"
-            error=""
+            name="form-password"
+            errorMsg="Some password error!"
+            validator={(val) => val.length > 0}
             placeholder="Enter your value"
-            value={val}
-            onChange={valHandler}
           />
         </FormGroup>
 
         <FormGroup>
           <SearchInput
             label="Test search input:"
-            error=""
+            name="form-search"
             placeholder="Enter your value"
-            value={val}
-            onChange={valHandler}
           />
 
           <NumberInput
             label="Test number input:"
-            error=""
+            name="form-number"
             placeholder="Enter your value"
-            value={val}
-            onChange={valHandler}
           />
 
-          <CheckboxInput
-            label="Test checkbox input:"
-            value={val}
-            onChange={valHandler}
-          />
+          <CheckboxInput label="Test checkbox input:" name="form-checkbox" />
         </FormGroup>
         <FormGroup>
           <RadioInput
             label="Test radio input:"
-            radioName="test-radio"
+            name="test-radio"
+            errorMsg="Some radio error!"
+            validator={(val) => !!val}
             options={[
               { val: "1", label: "1_" },
               { val: "2", label: "2_" },
               { val: "3", label: "3_" },
             ]}
-            value={val}
-            onChange={valHandler}
           />
 
           <TelInput
             label="Test telephone input:"
-            error=""
+            name="form-tel"
+            errorMsg="Some tel error!"
+            validator={(val) => val.length > 0}
             placeholder="Enter your value"
-            value={val}
-            onChange={valHandler}
           />
 
           <DateInput
             label="Test Date input:"
-            error=""
+            name="form-date"
+            errorMsg="Some date error!"
+            validator={(val) => !!val}
             placeholder="Enter your value"
-            value={val}
-            onChange={valHandler}
           />
         </FormGroup>
 
         <FormGroup>
           <TextareaInput
             label="Test text input:"
-            error="Some validation error!!"
+            name="form-textarea"
+            errorMsg="Some textarea error!"
+            validator={(val) => val.length > 0}
             placeholder="Enter your value"
-            value={val}
-            onChange={valHandler}
           />
+          <CheckboxInput
+            label="Add an extra textarea"
+            name="extra-checkbox"
+            value={addExtraTextarea}
+            onChange={setAddExtraTextarea}
+          />
+          {addExtraTextarea && (
+            <TextareaInput
+              label="Test text 2 input:"
+              name="form-textarea-extra"
+              errorMsg="Some textarea error!"
+              validator={(val) => val > 0}
+              placeholder="Enter your value"
+            />
+          )}
         </FormGroup>
         <Button type="submit">Submit</Button>
       </Form>

@@ -7,9 +7,12 @@
   flex-grow: 1;
 
   border: 1px solid black;
-  border-right: none;
 
   padding-right: 3rem;
+}
+
+.input-container input.with-button {
+  border-right: none;
 }
 
 .input-container button {

@@ -1,10 +1,12 @@
+import { useForm } from "../../hooks/form-hook";
 import Label from "../Label";
 import styles from "./NumberInput.module.css";
 
 function NumberInput({
   label,
   name,
-  error,
+  errorMsg = "",
+  validator = () => true,
 
   placeholder,
   max,
@@ -18,24 +20,43 @@ function NumberInput({
   value,
   onChange,
 }) {
-  const changeHandler = (event) => onChange(event.target.value);
+  /**
+   * Pass data to Form hook. If the Input is in a Form component,
+   * the Form hook will control this Input. If the Input is NOT in
+   * a Form component, it will be controlled by it's parent
+   * through the value and onChange props
+   */
+  const { inputValue, inputOnChange, inputError } = useForm(
+    "number",
+    name,
+    value,
+    onChange,
+    validator
+  );
+
+  // Setup a change handler, to transform the Input value
+  // TODO: Allow the user to input just a minus sign
+  const changeHandler = (event) => inputOnChange(+event.target.value);
+
+  // Setup error message
+  const errMsg = inputError ? errorMsg : "";
 
   const increment = (dir) => () => {
-    if (isNaN(+value)) {
-      onChange(dir);
+    if (isNaN(+inputValue)) {
+      inputOnChange(dir);
     }
-    onChange(+value + dir);
+    inputOnChange(+inputValue + dir);
   };
 
   return (
-    <Label label={label} error={error}>
+    <Label label={label} error={errMsg}>
       <div className={styles["number-container"]}>
         <button type="button" onClick={increment(-1)} className={styles.left}>
           -
         </button>
         <input
           name={name}
-          value={value}
+          value={inputValue}
           onChange={changeHandler}
           type="number"
           placeholder={placeholder}
