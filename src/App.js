@@ -1,6 +1,6 @@
 import "./App.css";
 import TextInput from "./components/TextInput";
-import { useId, useRef, useState } from "react";
+import { useId, useState } from "react";
 import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PaswordInput";
 import SearchInput from "./components/SearchInput";
@@ -16,7 +16,6 @@ import Button from "./components/Button";
 
 function App() {
   const [addExtraTextarea, setAddExtraTextarea] = useState(false);
-  const [multipleEmails, setMultipleEmails] = useState([]);
   const formId = useId();
 
   const submitHandler = (data) => {
