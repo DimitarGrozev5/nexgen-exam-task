@@ -43,6 +43,7 @@ function MultipleEmail({
     if (!/^.+@.+\..+$/.test(e)) {
       emailStyles.add("email__entered-invalid");
     }
+    // TODO: change the container style if the errorMsg is not empty
 
     return (
       <div className={emailStyles.className} key={e}>

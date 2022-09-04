@@ -42,6 +42,7 @@ export const useForm = (inputType, inputName, value, onChange, validator) => {
     checkbox: false,
     date: undefined,
     email: "",
+    multiEmail: [],
     number: "",
     password: "",
     radio: undefined,

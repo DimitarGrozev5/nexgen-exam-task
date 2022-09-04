@@ -23,8 +23,9 @@ function EmailInput({
    * a Form component, it will be controlled by it's parent
    * through the value and onChange props
    */
+  const emailType = multiple ? "multiEmail" : "email";
   const { inputValue, inputOnChange, inputError } = useForm(
-    "email",
+    emailType,
     name,
     value,
     onChange,
