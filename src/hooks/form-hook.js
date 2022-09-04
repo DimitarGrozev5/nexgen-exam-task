@@ -23,6 +23,15 @@ const getVals = (formId) =>
     return { ...result, [key]: val.value };
   }, {});
 
+/**
+ * The *validate* function tests the validity of the targeted input
+ * 
+ * It invokes the input validator function, by passing an object,
+ * containing all of the forms input names and values as key-value pairs
+ * 
+ * In this way the Input components accept a *validator* function,
+ * that uses the *this* keyword, to reference other inputs in the same form
+ */
 const validate = (formId, inputName) => {
   const validator = allForms[formId][inputName].validator;
   const ctx = getVals(formId);
