@@ -25,10 +25,10 @@ const getVals = (formId) =>
 
 /**
  * The *validate* function tests the validity of the targeted input
- * 
+ *
  * It invokes the input validator function, by passing an object,
  * containing all of the forms input names and values as key-value pairs
- * 
+ *
  * In this way the Input components accept a *validator* function,
  * that uses the *this* keyword, to reference other inputs in the same form
  */
@@ -97,7 +97,15 @@ export const useForm = (initValue, inputName, value, onChange, validator) => {
     return () => {
       delete allForms[formId][inputName];
     };
-  }, [formId, inputName, inputValue, showInputError, validator, formControl]);
+  }, [
+    formId,
+    inputName,
+    inputValue,
+    showInputError,
+    validator,
+    formControl,
+    setIsTouched,
+  ]);
 
   /**
    * If the consumer has provided a value and onChange,
