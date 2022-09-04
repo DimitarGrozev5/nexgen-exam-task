@@ -79,7 +79,7 @@ function PasswordInput({
         />
         {showButton && (
           <button
-            className={inputError && styles.error}
+            className={inputError ? styles.error : ""}
             type="button"
             onClick={toggleType}
           >
