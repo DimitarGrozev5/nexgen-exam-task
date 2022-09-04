@@ -4,8 +4,8 @@ import styles from "./Form.module.css";
 
 /**
  * Form Component is used to wrap Input Components in an html form
- * The Component wraps it's child elements in a Form Context, this
- * way the child components know they are in a Form and get controlled
+ * The Component also wraps it's child elements in a Form Context, this
+ * way the child components know they are in a Form and can get controlled
  * by the Form
  */
 
@@ -19,9 +19,9 @@ function Form({ id, onSubmit, children }) {
     console.log(formData.isValid());
     console.log(formData.getVals());
 
-    // if (formData.isValid()) {
-    //   onSubmit(formData.getVals());
-    // }
+    if (formData.isValid() && onSubmit) {
+      onSubmit(formData.getVals());
+    }
   };
 
   return (

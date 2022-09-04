@@ -98,12 +98,17 @@ export const useForm = (inputType, inputName, value, onChange, validator) => {
   };
 };
 
+/**
+ * useFormData hook gives access to the form state
+ */
 export const useFormData = (formId) => {
+  // GetVals function returns the values of the form inputs
   const getVals = () =>
     Object.entries(allForms[formId]).reduce((result, [key, val]) => {
       return { ...result, [key]: val.value };
     }, {});
 
+  // isValid function validates all of the form inputs and returns the overall form validity
   const isValid = () =>
     Object.values(allForms[formId]).reduce((v, input) => {
       const isV = input.validator(input.value);
