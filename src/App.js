@@ -67,6 +67,8 @@ function App() {
           <RadioInput
             label="Test radio input:"
             name="test-radio"
+            errorMsg="Some radio error!"
+            validator={(val) => !!val}
             options={[
               { val: "1", label: "1_" },
               { val: "2", label: "2_" },
@@ -96,7 +98,7 @@ function App() {
             label="Test text input:"
             name="form-textarea"
             errorMsg="Some textarea error!"
-            validator={(val) => val > 0}
+            validator={(val) => val.length > 0}
             placeholder="Enter your value"
           />
           <CheckboxInput

@@ -4,8 +4,10 @@ import styles from "./RadioInput.module.css";
 
 function RadioInput({
   label,
-
   name,
+  errorMsg = "",
+  validator = () => true,
+
   options,
 
   value,
@@ -17,16 +19,19 @@ function RadioInput({
    * a Form component, it will be controlled by it's parent
    * through the value and onChange props
    */
-  const { inputValue, inputOnChange } = useForm(
-    "email",
+  const { inputValue, inputOnChange, inputError } = useForm(
+    "radio",
     name,
     value,
     onChange,
-    () => true
+    validator
   );
 
   // Setup a change handler, to transform the Input value
   const changeHandler = (val) => () => inputOnChange(val);
+
+  // Setup error message
+  const errMsg = inputError ? errorMsg : "";
 
   const mapOptionToRadio = ({ val, label }) => (
     <Label label={label} textFirst={false} key={val}>
@@ -42,7 +47,7 @@ function RadioInput({
 
   return (
     <>
-      <Label label={label}></Label>
+      <Label label={label} error={errMsg}></Label>
       {options.map(mapOptionToRadio)}
     </>
   );

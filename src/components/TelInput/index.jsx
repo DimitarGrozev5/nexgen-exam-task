@@ -22,7 +22,7 @@ function TelInput({
    * through the value and onChange props
    */
   const { inputValue, inputOnChange, inputError } = useForm(
-    "email",
+    "tel",
     name,
     value,
     onChange,

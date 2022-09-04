@@ -44,7 +44,7 @@ export const useForm = (inputType, inputName, value, onChange, validator) => {
     email: "",
     number: "",
     password: "",
-    radio: null,
+    radio: undefined,
     search: "",
     tel: "",
     textarea: "",
