@@ -10,6 +10,7 @@ function PasswordInput({
   name,
   errorMsg = "",
   validator = () => true,
+  initValue = "",
 
   placeholder,
   maxLength,
@@ -27,7 +28,7 @@ function PasswordInput({
    * the Input will be controlled not by the Form, but by the parent
    */
   const { inputValue, inputOnChange, inputError } = useForm(
-    "password",
+    initValue,
     name,
     value,
     onChange,

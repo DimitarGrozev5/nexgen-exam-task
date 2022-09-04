@@ -43,6 +43,7 @@ function App() {
             errorMsg="Please enter a value!!"
             validator={(val) => val.length > 0}
             placeholder="First and Last"
+            // initValue="Test"
           />
 
           <EmailInput
@@ -51,6 +52,7 @@ function App() {
             errorMsg="Please enter a valid email!!"
             validator={(val) => val.length > 0}
             placeholder="email@example.com"
+            // initValue="Test"
           />
 
           <PasswordInput
@@ -59,6 +61,7 @@ function App() {
             errorMsg="Please enter a password!"
             validator={(val) => val.length > 0}
             placeholder="**********"
+            // initValue="Test"
           />
 
           <PasswordInput
@@ -69,6 +72,7 @@ function App() {
               return this["form-password"] === val;
             }}
             placeholder="**********"
+            // initValue="Test"
           />
         </FormGroup>
 
@@ -77,15 +81,21 @@ function App() {
             label="Type a query (search input):"
             name="form-search"
             placeholder="Start typing..."
+            // initValue="Test"
           />
 
           <NumberInput
             label="Enter a number (number input):"
             name="form-number"
             placeholder="Enter your value"
+            // initValue={15}
           />
 
-          <CheckboxInput label="Check this box! (checkbox input)" name="form-checkbox" />
+          <CheckboxInput
+            label="Check this box! (checkbox input)"
+            name="form-checkbox"
+            // initValue={true}
+          />
         </FormGroup>
         <FormGroup>
           <RadioInput
@@ -98,6 +108,7 @@ function App() {
               { val: "no", label: "No" },
               { val: "maybe", label: "Maybe later" },
             ]}
+            // initValue="no"
           />
 
           <TelInput
@@ -106,6 +117,7 @@ function App() {
             errorMsg="Invalid phone!"
             validator={(val) => val.length > 0}
             placeholder="088 123 1234"
+            // initValue="Test"
           />
 
           <DateInput
@@ -113,6 +125,7 @@ function App() {
             name="form-date"
             errorMsg="Please enter date!"
             validator={(val) => !!val}
+            // initValue={new Date()}
           />
         </FormGroup>
 
@@ -123,6 +136,7 @@ function App() {
             errorMsg="Some textarea error!"
             validator={(val) => val.length > 0}
             placeholder="Enter your value"
+            // initValue="Test"
           />
           <CheckboxInput
             label="Add an extra textarea"
@@ -137,6 +151,7 @@ function App() {
               errorMsg="Some textarea error!"
               validator={(val) => val.length > 0}
               placeholder="Enter your value"
+              // initValue="Test"
             />
           )}
 
@@ -147,6 +162,7 @@ function App() {
             validator={(val) => val.length > 1}
             placeholder="Enter your value"
             multiple
+            // initValue={["test1", "test2"]}
           />
         </FormGroup>
         <Button type="submit">Submit</Button>

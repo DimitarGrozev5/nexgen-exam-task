@@ -5,15 +5,16 @@ import styles from "./CheckboxInput.module.css";
 function CheckboxInput({
   label,
   name,
+  initValue = false,
 
   value,
   onChange,
 }) {
   /**
-   * 
+   *
    */
   const { inputValue, inputOnChange } = useForm(
-    "checkbox",
+    initValue,
     name,
     value,
     onChange,

@@ -6,6 +6,7 @@ function TelInput({
   name,
   errorMsg = "",
   validator = () => true,
+  initValue = "",
 
   placeholder,
   maxLength,
@@ -23,7 +24,7 @@ function TelInput({
    * the Input will be controlled not by the Form, but by the parent
    */
   const { inputValue, inputOnChange, inputError } = useForm(
-    "tel",
+    initValue,
     name,
     value,
     onChange,

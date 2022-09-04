@@ -6,6 +6,7 @@ function TextareaInput({
   name,
   errorMsg = "",
   validator = () => true,
+  initValue = "",
 
   placeholder,
   disabled,
@@ -25,7 +26,7 @@ function TextareaInput({
    * the Input will be controlled not by the Form, but by the parent
    */
   const { inputValue, inputOnChange, inputError } = useForm(
-    "textarea",
+    initValue,
     name,
     value,
     onChange,

@@ -7,6 +7,7 @@ function RadioInput({
   name,
   errorMsg = "",
   validator = () => true,
+  initValue = undefined,
 
   options,
 
@@ -21,7 +22,7 @@ function RadioInput({
    * the Input will be controlled not by the Form, but by the parent
    */
   const { inputValue, inputOnChange, inputError } = useForm(
-    "radio",
+    initValue,
     name,
     value,
     onChange,

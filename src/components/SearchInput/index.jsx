@@ -8,6 +8,7 @@ function SearchInput({
   name,
   errorMsg = "",
   validator = () => true,
+  initValue = "",
 
   placeholder,
   maxLength,
@@ -25,7 +26,7 @@ function SearchInput({
    * the Input will be controlled not by the Form, but by the parent
    */
   const { inputValue, inputOnChange, inputError } = useForm(
-    "search",
+    initValue,
     name,
     value,
     onChange,

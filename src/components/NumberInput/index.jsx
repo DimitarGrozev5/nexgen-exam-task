@@ -7,6 +7,7 @@ function NumberInput({
   name,
   errorMsg = "",
   validator = () => true,
+  initValue = 0,
 
   placeholder,
   max,
@@ -28,7 +29,7 @@ function NumberInput({
    * the Input will be controlled not by the Form, but by the parent
    */
   const { inputValue, inputOnChange, inputError } = useForm(
-    "number",
+    initValue,
     name,
     value,
     onChange,

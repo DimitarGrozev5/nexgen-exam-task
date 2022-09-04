@@ -7,6 +7,7 @@ function DateInput({
   name,
   errorMsg = "",
   validator = () => true,
+  initValue = undefined,
 
   max,
   min,
@@ -19,7 +20,7 @@ function DateInput({
    * 
    */
   const { inputValue, inputOnChange, inputError } = useForm(
-    "date",
+    initValue,
     name,
     value,
     onChange,

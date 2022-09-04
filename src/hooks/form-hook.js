@@ -26,7 +26,7 @@ const allForms = {};
  * If the Input Component has value and onChange props provided
  * then the Input control is left to those values.
  */
-export const useForm = (inputType, inputName, value, onChange, validator) => {
+export const useForm = (initValue, inputName, value, onChange, validator) => {
   // Get the formId for the Input Component that is calling the hook
   // If the formId then the Input Component is not in a Form
   const formId = useContext(FormContext);
@@ -36,21 +36,6 @@ export const useForm = (inputType, inputName, value, onChange, validator) => {
    * it means that he wants to control the Input not through the Form
    */
   const formControl = value === undefined && onChange === undefined;
-
-  // Setup initial values for the Input, depending on the input type
-  const initValue = {
-    checkbox: false,
-    date: undefined,
-    email: "",
-    multiEmail: [],
-    number: "",
-    password: "",
-    radio: undefined,
-    search: "",
-    tel: "",
-    textarea: "",
-    text: "",
-  }[inputType];
 
   // Setup state for the Input element
   const [inputValue, setInputValue] = useState(initValue);
@@ -132,7 +117,7 @@ export const useFormData = (formId) => {
         input.setShowInputError(true);
         return false;
       }
-      
+
       input.setShowInputError(false);
       return v && true;
     }, true);

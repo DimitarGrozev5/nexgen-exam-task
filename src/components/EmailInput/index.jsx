@@ -7,6 +7,7 @@ function EmailInput({
   name,
   errorMsg = "",
   validator = () => true,
+  initValue = "",
 
   placeholder,
   maxLength,
@@ -24,9 +25,9 @@ function EmailInput({
    * If the parent has passed value and onChange props,
    * the Input will be controlled not by the Form, but by the parent
    */
-  const emailType = multiple ? "multiEmail" : "email";
+  const defaultInitValue = initValue || (multiple ? [] : "");
   const { inputValue, inputOnChange, inputError } = useForm(
-    emailType,
+    defaultInitValue,
     name,
     value,
     onChange,
