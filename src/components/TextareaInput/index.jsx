@@ -24,7 +24,7 @@ function TextareaInput({
    * through the value and onChange props
    */
   const { inputValue, inputOnChange, inputError } = useForm(
-    "email",
+    "textarea",
     name,
     value,
     onChange,
