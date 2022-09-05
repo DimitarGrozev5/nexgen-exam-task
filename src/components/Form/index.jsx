@@ -16,8 +16,8 @@ function Form({ id, onSubmit, children }) {
   // Submit handler checks if all fields are valid and if so, trgiggers the passed onSubmit function
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(formData.isValid());
-    console.log(formData.getVals());
+    // console.log(formData.isValid());
+    // console.log(formData.getVals());
 
     if (onSubmit && formData.isValid()) {
       onSubmit(formData.getVals());
