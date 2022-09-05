@@ -213,9 +213,8 @@ function App() {
               label="Select a file (file input):"
               name="form-file"
               errorMsg="Please input a file"
-              validator={(val) => val?.length > 1}
+              validator={(val) => val?.length === 1}
               accept={[".css", ".js"]}
-              multiple
             />
           </FormGroup>
 
