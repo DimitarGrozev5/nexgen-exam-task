@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 import { useForm } from "../../hooks/form-hook";
-import { Style } from "../../util/styles";
 import Label from "../Label";
+import Dragable from "./Dragable";
 import styles from "./FileInput.module.css";
 
 function FileInput({
@@ -10,7 +10,7 @@ function FileInput({
   name,
   errorMsg = "",
   validator = () => true,
-  initValue = null,
+  initValue = [],
 
   accept = [],
   multiple,
@@ -36,8 +36,8 @@ function FileInput({
   // Setup error message for form validation
   const errMsg = inputError ? errorMsg : "";
 
-  // Set up hover state, to change the styling of the Input when a user is dragging a file over
-  const [hover, setHover] = useState(false);
+  // Join the accepted values
+  const acceptedValues = accept ? accept.join(",") : undefined;
 
   // Set up an Input error message and make it dissapear after three seconds
   const [fileError, setFileError] = useState("");
@@ -54,9 +54,6 @@ function FileInput({
       clearTimeout(timer);
     };
   }, [fileError]);
-
-  // Join the accepted values
-  const acceptedValues = accept ? accept.join(",") : undefined;
 
   // Handler for validating the provided files and passing them to the onChange function
   const fileChangeHandler = (fileList) => {
@@ -90,42 +87,10 @@ function FileInput({
     inputOnChange(Array.from(fileList));
   };
 
-  // A bunch of handlers for receiving a drag and drop file
-  const dragInHandler = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setHover(true);
-  };
-
-  const dragOutHandler = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setHover(false);
-  };
-
-  const dragHandler = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-  };
-
-  const dropHandler = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    fileChangeHandler(event.dataTransfer.files);
-    setHover(false);
-  };
-
   // A handler for the file input element
   const fileInputChangeHandler = (event) => {
     fileChangeHandler(event.target.files);
   };
-
-  // Seting up drop area styles
-  const dropAreaStyles = new Style(styles);
-  dropAreaStyles.add("drop-area");
-  if (hover) {
-    dropAreaStyles.add("active");
-  }
 
   // Handler for removing a file
   const removeFileHandler = (name) => () => {
@@ -144,22 +109,11 @@ function FileInput({
         onChange={fileInputChangeHandler}
       />
 
-      {(!inputValue || !inputValue.length) && (
-        <div
-          className={dropAreaStyles.className}
-          onDragEnter={dragInHandler}
-          onDragLeave={dragOutHandler}
-          onDragOver={dragHandler}
-          onDrop={dropHandler}
-        >
-          {fileError && (
-            <span className={styles["error-msg"]}>{fileError}</span>
-          )}
-          {!fileError && !value && "Drop a file or click to open a dialog"}
-        </div>
+      {!inputValue?.length && (
+        <Dragable fileChangeHandler={fileChangeHandler} fileError={fileError} />
       )}
 
-      {inputValue && !!inputValue.length && (
+      {!!inputValue?.length && (
         <div className={styles["selected-files"]}>
           <ul>
             {inputValue.map((file) => (

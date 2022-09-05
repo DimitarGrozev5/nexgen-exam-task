@@ -2,24 +2,6 @@
   display: none;
 }
 
-.drop-area {
-  border: 3px dashed #8a6fa3;
-  border-radius: 5px;
-  height: 5rem;
-  color: #8a6fa3;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 0.3rem;
-}
-
-.drop-area.active {
-  border: 3px dashed #590ba2;
-  color: #590ba2;
-}
-
-.error-msg {
-  color: red;
-}
-
 .selected-files {
   border: 1px solid #590ba2;
   border-radius: 5px;
