@@ -37,13 +37,23 @@ export const useHttpClient = () => {
           signal: httpAbortCtrl.signal,
         };
 
-        // If there is a body, stringify it and add the correct headers
-        if (body) {
+        /**
+         * If the body is not null and is not a FormData Object, send it as JSON
+         * by stringifying it and setting up the correct headers
+         * 
+         * If the body is a FormData Object, then send it directly
+         * The fetch method sets up the correct headers automaticaly
+         */
+        if (body && !(body instanceof FormData)) {
           config.body = JSON.stringify(body);
           config.headers = {
             "Content-Type": "application/json",
           };
         }
+        if (body && body instanceof FormData) {
+          config.body = body;
+        }
+
         try {
           // Fetch data
           const response = await fetch(url, config);

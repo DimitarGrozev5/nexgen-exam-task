@@ -15,6 +15,7 @@ import FormGroup from "./components/FormGroup";
 import Button from "./components/Button";
 import { useHttpClient } from "./hooks/http-client";
 import Modal from "./components/Modal";
+import FileInput from "./components/FileInput";
 
 function App() {
   // Generate an ID for the Form
@@ -34,11 +35,18 @@ function App() {
 
   // Setup a handler for the form submit event
   const submitHandler = async (formRawData) => {
+
+    // The handler creates a new FormData object, because the Form contains a file input
+    const formData = new FormData();
+    for (const name in formRawData) {
+      formData.append(name, formRawData[name]);
+    }
+
     try {
       // Send a post request with the form data
       await sendRequest.post(
         "https://hookb.in/" + process.env.REACT_APP_POST_BIN_URL,
-        formRawData
+        formData
       );
 
       // Open the information modal
@@ -200,23 +208,22 @@ function App() {
               // initValue={["test1", "test2"]}
             />
           </FormGroup>
+
+          <FormGroup>
+            <FileInput
+              label="Select a file (file input):"
+              name="form-file"
+              errorMsg="Please input a file"
+              validator={(val) => val?.length > 1}
+              accept={[".css", ".js"]}
+              multiple
+            />
+          </FormGroup>
+
           <Button type="submit" disabled={isLoading}>
             {submitText}
           </Button>
         </Form>
-
-        {/* <form>
-        <input type="file" />
-        <input type="range" />
-        <input type="url" />
-
-        <input type="datetime-local" />
-        <input type="month" />
-        <input type="time" />
-        <input type="week" />
-
-        <input type="color" />
-      </form> */}
       </div>
     </>
   );
