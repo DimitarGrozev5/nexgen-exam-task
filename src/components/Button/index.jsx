@@ -1,8 +1,8 @@
 import styles from "./Button.module.css";
 
-function Button({ type = "button", children: text }) {
+function Button({ type = "button", disabled = false, children: text }) {
   let button = (
-    <button className={styles.button} type={type}>
+    <button disabled={disabled} className={styles.button} type={type}>
       {text}
     </button>
   );
@@ -10,7 +10,7 @@ function Button({ type = "button", children: text }) {
   if (type === "submit") {
     button = (
       <div className={styles["submit-wrapper"]}>
-        <button className={styles.button} type={type}>
+        <button disabled={disabled} className={styles.button} type={type}>
           {text}
         </button>
       </div>

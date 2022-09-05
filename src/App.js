@@ -13,20 +13,23 @@ import TextareaInput from "./components/TextareaInput";
 import Form from "./components/Form";
 import FormGroup from "./components/FormGroup";
 import Button from "./components/Button";
+import { useHttpClient } from "./hooks/http-client";
 
 function App() {
   const [addExtraTextarea, setAddExtraTextarea] = useState(false);
   const formId = useId();
 
-  const submitHandler = (data) => {
-    fetch("https://hookb.in/YVkaKJalYbUQjy0QmeZa", {
-      method: "POST",
-      // mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+  const { isLoading, error, clearError, sendRequest } = useHttpClient();
+
+  const submitText = isLoading ? "Loading..." : "Submit";
+
+  const submitHandler = async (data) => {
+    const response = await sendRequest.post(
+      "https://hookb.in/YVkaKJalYbUQjy0QmeZa",
+      data
+    );
+
+    console.log(response);
   };
 
   return (
@@ -162,7 +165,9 @@ function App() {
             // initValue={["test1", "test2"]}
           />
         </FormGroup>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={isLoading}>
+          {submitText}
+        </Button>
       </Form>
 
       {/* <form>
