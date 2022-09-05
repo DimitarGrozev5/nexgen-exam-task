@@ -45,3 +45,17 @@
 .modal > footer {
   text-align: right;
 }
+
+@media screen and (max-width: 850px) {
+  .modal {
+    left: 15vw;
+    right: 15vw;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .modal {
+    left: 5vw;
+    right: 5vw;
+  }
+}

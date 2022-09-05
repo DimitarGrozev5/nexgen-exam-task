@@ -7,6 +7,10 @@
   padding: 0.3rem;
 }
 
+.button {
+  display: none;
+}
+
 .drop-area.active {
   border: 3px dashed #590ba2;
   color: #590ba2;
@@ -14,4 +18,14 @@
 
 .error-msg {
   color: red;
+}
+
+@media screen and (max-width: 550px) {
+  .drop-area {
+    display: none;
+  }
+
+  .button {
+    display: inline;
+  }
 }

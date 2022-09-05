@@ -32,3 +32,18 @@ html {
 .h1 {
   color: #590ba2;
 }
+
+@media screen and (max-width: 950px) {
+  .App {
+    width: 95%;
+    margin: auto;
+    margin-top: 1rem;
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+  .App {
+    padding: 0.3rem;
+  }
+}

@@ -1,7 +1,21 @@
 .form {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
   gap: 1rem;
 
   padding: 0.5rem;
+}
+
+@media screen and (max-width: 750px) {
+  .form {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
 }

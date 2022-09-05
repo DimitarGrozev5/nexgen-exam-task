@@ -19,3 +19,15 @@
 
   cursor: pointer;
 }
+
+@media screen and (max-width: 750px) {
+  .submit-wrapper {
+    width: 100%;
+    margin: 0.5rem;
+    padding: 0.5rem;
+
+    grid-column: 1 / 3;
+
+    text-align: right;
+  }
+}

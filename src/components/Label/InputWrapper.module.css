@@ -64,3 +64,20 @@
 .input-container textarea:focus {
   outline: none;
 }
+
+@media screen and (max-width: 500px) {
+  .input-container input[type="text"],
+  .input-container input[type="email"],
+  .input-container input[type="password"],
+  .input-container input[type="search"],
+  .input-container input[type="number"],
+  .input-container input[type="tel"],
+  .input-container input[type="date"],
+  .input-container textarea {
+    padding: 0.7rem;
+  }
+
+  .input-container textarea {
+    min-height: 8rem;
+  }
+}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { Style } from "../../../util/styles";
+import Button from "../../Button";
 import styles from "./Dragable.module.css";
 
 function Dragable({ fileChangeHandler, fileError, openFileDialog }) {
@@ -40,17 +41,22 @@ function Dragable({ fileChangeHandler, fileError, openFileDialog }) {
   }
 
   return (
-    <div
-      className={dropAreaStyles.className}
-      onDragEnter={dragInHandler}
-      onDragLeave={dragOutHandler}
-      onDragOver={dragHandler}
-      onDrop={dropHandler}
-      onClick={openFileDialog}
-    >
-      {fileError && <span className={styles["error-msg"]}>{fileError}</span>}
-      {!fileError && "Drop a file or click to open a dialog"}
-    </div>
+    <>
+      <div
+        className={dropAreaStyles.className}
+        onDragEnter={dragInHandler}
+        onDragLeave={dragOutHandler}
+        onDragOver={dragHandler}
+        onDrop={dropHandler}
+        onClick={openFileDialog}
+      >
+        {fileError && <span className={styles["error-msg"]}>{fileError}</span>}
+        {!fileError && "Drop a file or click to open a dialog"}
+      </div>
+      <div className={styles.button}>
+        <Button onClick={openFileDialog}>Add file</Button>
+      </div>
+    </>
   );
 }
 export default Dragable;
