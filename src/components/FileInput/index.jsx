@@ -4,6 +4,7 @@ import { useForm } from "../../hooks/form-hook";
 import Label from "../Label";
 import Dragable from "./Dragable";
 import styles from "./FileInput.module.css";
+import SelectedFiles from "./SelectedFiles";
 
 function FileInput({
   label,
@@ -92,12 +93,6 @@ function FileInput({
     fileChangeHandler(event.target.files);
   };
 
-  // Handler for removing a file
-  const removeFileHandler = (name) => () => {
-    const newFiles = inputValue.filter((file) => file.name !== name);
-    inputOnChange(newFiles);
-  };
-
   return (
     <div>
       <Label label={label} error={errMsg}></Label>
@@ -114,18 +109,7 @@ function FileInput({
       )}
 
       {!!inputValue?.length && (
-        <div className={styles["selected-files"]}>
-          <ul>
-            {inputValue.map((file) => (
-              <li key={file.name} className={styles.file}>
-                {file.name}{" "}
-                <button onClick={removeFileHandler(file.name)} type="button">
-                  x
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <SelectedFiles inputValue={inputValue} inputOnChange={inputOnChange} />
       )}
     </div>
   );
