@@ -113,7 +113,7 @@ function App() {
               validator={function (val) {
                 return this["form-password"] === val;
               }}
-              placeholder="**********"
+              placeholder="validator here is a bit different"
               // initValue="Test"
             />
           </FormGroup>
