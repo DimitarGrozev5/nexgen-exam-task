@@ -13,26 +13,20 @@ import TextareaInput from "./components/TextareaInput";
 import Form from "./components/Form";
 import FormGroup from "./components/FormGroup";
 import Button from "./components/Button";
-import { usePostBinController } from "./hooks/post-bin/post-bin-controller";
 
 function App() {
   const [addExtraTextarea, setAddExtraTextarea] = useState(false);
   const formId = useId();
 
-  const postBinController = usePostBinController();
-
   const submitHandler = (data) => {
-    fetch(
-      "https://www.toptal.com/developers/postbin/1662293684099-0788799582514",
-      {
-        method: "POST",
-        // mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    );
+    fetch("https://hookb.in/YVkaKJalYbUQjy0QmeZa", {
+      method: "POST",
+      // mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
   };
 
   return (

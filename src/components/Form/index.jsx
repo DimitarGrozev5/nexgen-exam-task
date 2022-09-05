@@ -19,9 +19,9 @@ function Form({ id, onSubmit, children }) {
     console.log(formData.isValid());
     console.log(formData.getVals());
 
-    // if (onSubmit && formData.isValid()) {
-    //   onSubmit(formData.getVals());
-    // }
+    if (onSubmit && formData.isValid()) {
+      onSubmit(formData.getVals());
+    }
   };
 
   return (
