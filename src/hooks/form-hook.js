@@ -118,7 +118,7 @@ export const useForm = (initValue, inputName, value, onChange, validator) => {
       inputValue: value,
       inputOnChange: onChange,
       inputError: false,
-      inputonBlur: () => {},
+      inputOnBlur: () => {},
     };
   }
 
