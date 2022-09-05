@@ -13,10 +13,13 @@ import TextareaInput from "./components/TextareaInput";
 import Form from "./components/Form";
 import FormGroup from "./components/FormGroup";
 import Button from "./components/Button";
+import { usePostBinController } from "./hooks/post-bin/post-bin-controller";
 
 function App() {
   const [addExtraTextarea, setAddExtraTextarea] = useState(false);
   const formId = useId();
+
+  const postBinController = usePostBinController();
 
   const submitHandler = (data) => {
     fetch(
