@@ -134,7 +134,7 @@ function FileInput({
   };
 
   return (
-    <>
+    <div>
       <Label label={label} error={errMsg}></Label>
       <input
         type="file"
@@ -173,7 +173,7 @@ function FileInput({
           </ul>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
