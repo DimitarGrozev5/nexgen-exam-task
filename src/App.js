@@ -17,22 +17,37 @@ import { useHttpClient } from "./hooks/http-client";
 import Modal from "./components/Modal";
 
 function App() {
-  const [addExtraTextarea, setAddExtraTextarea] = useState(false);
+  // Generate an ID for the Form
   const formId = useId();
 
+  // Control Form dynamci content
+  const [addExtraTextarea, setAddExtraTextarea] = useState(false);
+
+  // Get the http client
   const { isLoading, error, clearError, sendRequest } = useHttpClient();
 
-  const [msgModal, setMsgModal] = useState(null);
-
+  // Change the text of the submit button, depending on the load status
   const submitText = isLoading ? "Loading..." : "Submit";
 
-  const submitHandler = async (data) => {
-    await sendRequest.post(
-      "https://hookb.in/YVkaKJalYbUQjy0QmeZa",
-      data
-    );
+  // Setup state for the information modal
+  const [msgModal, setMsgModal] = useState(null);
 
-    setMsgModal("Data is posted");
+  // Setup a handler for the form submit event
+  const submitHandler = async (data) => {
+    try {
+      // Send a post request with the form data
+      await sendRequest.post("https://hookb.in/YVkaKJalYbUQjy0QmeZa", data);
+
+      // Open the information modal
+      setMsgModal(
+        <>
+          Data is posted. You can see the data at{" "}
+          <a target="_blank" href="https://hookbin.com/YVkaKJalYbUQjy0QmeZa">
+            hookbin.com
+          </a>
+        </>
+      );
+    } catch (err) {}
   };
 
   return (
@@ -47,7 +62,7 @@ function App() {
       {error && <Modal title="Error" message={error} onClose={clearError} />}
 
       <div className="App">
-        <h1 className="h1">Enter your profile information</h1>
+        <h1 className="h1">Enter your information</h1>
         <Form id={formId} onSubmit={submitHandler}>
           <FormGroup>
             <TextInput
