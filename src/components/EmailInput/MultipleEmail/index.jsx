@@ -84,7 +84,7 @@ function MultipleEmail({
   };
 
   return (
-    <>
+    <div>
       <Label label={label} error={errorMsg}></Label>
       <div className={styles["email-container"]}>
         {value.map(emailTextToComponent)}
@@ -101,7 +101,7 @@ function MultipleEmail({
           onBlur={blurHandler}
         />
       </div>
-    </>
+    </div>
   );
 }
 
