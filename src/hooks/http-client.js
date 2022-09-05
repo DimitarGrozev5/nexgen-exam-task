@@ -14,6 +14,13 @@ export const useHttpClient = () => {
         // Set loading state to true
         setIsLoading(true);
 
+        // Trottling the response
+        // await new Promise((resolve) =>
+        //   setTimeout(() => {
+        //     resolve();
+        //   }, 2000)
+        // );
+
         // Create an Abort Controller for the request and add it to the list
         const httpAbortCtrl = new AbortController();
         activeHttpRequests.current.push(httpAbortCtrl);
