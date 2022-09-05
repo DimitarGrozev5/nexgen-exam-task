@@ -127,8 +127,15 @@ function FileInput({
     dropAreaStyles.add("active");
   }
 
+  // Handler for removing a file
+  const removeFileHandler = (name) => () => {
+    const newFiles = inputValue.filter((file) => file.name !== name);
+    inputOnChange(newFiles);
+  };
+
   return (
-    <Label label={label} error={errMsg}>
+    <>
+      <Label label={label} error={errMsg}></Label>
       <input
         type="file"
         accept={acceptedValues}
@@ -136,8 +143,8 @@ function FileInput({
         className={styles["native-file"]}
         onChange={fileInputChangeHandler}
       />
-      
-      {!inputValue && (
+
+      {(!inputValue || !inputValue.length) && (
         <div
           className={dropAreaStyles.className}
           onDragEnter={dragInHandler}
@@ -152,16 +159,21 @@ function FileInput({
         </div>
       )}
 
-      {inputValue && (
-        <div>
+      {inputValue && !!inputValue.length && (
+        <div className={styles["selected-files"]}>
           <ul>
             {inputValue.map((file) => (
-              <li key={file.name}>{file.name}</li>
+              <li key={file.name} className={styles.file}>
+                {file.name}{" "}
+                <button onClick={removeFileHandler(file.name)} type="button">
+                  x
+                </button>
+              </li>
             ))}
           </ul>
         </div>
       )}
-    </Label>
+    </>
   );
 }
 
