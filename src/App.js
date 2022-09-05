@@ -33,16 +33,23 @@ function App() {
   const [msgModal, setMsgModal] = useState(null);
 
   // Setup a handler for the form submit event
-  const submitHandler = async (data) => {
+  const submitHandler = async (formRawData) => {
     try {
       // Send a post request with the form data
-      await sendRequest.post("https://hookb.in/YVkaKJalYbUQjy0QmeZa", data);
+      await sendRequest.post(
+        "https://hookb.in/" + process.env.REACT_APP_POST_BIN_URL,
+        formRawData
+      );
 
       // Open the information modal
       setMsgModal(
         <>
           Data is posted. You can see the data at{" "}
-          <a target="_blank" href="https://hookbin.com/YVkaKJalYbUQjy0QmeZa">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href={"https://hookbin.com/" + process.env.REACT_APP_POST_BIN_URL}
+          >
             hookbin.com
           </a>
         </>
