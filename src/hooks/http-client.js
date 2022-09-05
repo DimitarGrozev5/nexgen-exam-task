@@ -1,12 +1,18 @@
 import { useState, useRef, useMemo, useEffect } from "react";
 
 export const useHttpClient = () => {
+  // State for storing the fetch status and errors
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   // Setup a list for storing Abort Controllers
   const activeHttpRequests = useRef([]);
 
+  /**
+   * The sendRequest Function is used to send HTTP requests to the provided url
+   * It can attach a body with the request. The body should be a js object.
+   * The Function will stringify it and attach the correct header
+   */
   const sendRequest = useMemo(() => {
     const send =
       (method) =>
@@ -21,7 +27,7 @@ export const useHttpClient = () => {
         //   }, 2000)
         // );
 
-        // Create an Abort Controller for the request and add it to the list
+        // Create an Abort Controller for the request and add it to the list of abort controllers
         const httpAbortCtrl = new AbortController();
         activeHttpRequests.current.push(httpAbortCtrl);
 
@@ -42,7 +48,7 @@ export const useHttpClient = () => {
           // Fetch data
           const response = await fetch(url, config);
 
-          // Remove http abort controller from list of active controllers if the fetch has passed
+          // Remove http abort controller from list of active controllers if the fetch has resolved
           activeHttpRequests.current = activeHttpRequests.current.filter(
             (reqCtrl) => reqCtrl !== httpAbortCtrl
           );
