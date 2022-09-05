@@ -110,7 +110,7 @@ export const useForm = (initValue, inputName, value, onChange, validator) => {
 
   /**
    * If the consumer has provided a value and onChange,
-   * it means that he wants to controll the Input not through the Form,
+   * it means that he wants to control the Input not through the Form,
    * so just return the values
    */
   if (!formControl) {
