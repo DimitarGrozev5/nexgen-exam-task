@@ -73,7 +73,7 @@ function FileInput({
     }
 
     // Make sure the file extentions area accepted
-    const extMatch = Array.from(fileList).reduce((res, { name }) => {
+    const extMatch = [...fileList].reduce((res, { name }) => {
       const someMatchOrAcceptIsEmpty =
         accept.some((ext) => name.endsWith(ext)) || !accept.length;
       return res && someMatchOrAcceptIsEmpty;
@@ -85,7 +85,7 @@ function FileInput({
     }
 
     // Update Form state
-    inputOnChange(Array.from(fileList));
+    inputOnChange([...fileList]);
   };
 
   // A handler for the file input element

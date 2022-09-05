@@ -35,7 +35,6 @@ function App() {
 
   // Setup a handler for the form submit event
   const submitHandler = async (formRawData) => {
-
     // The handler creates a new FormData object, because the Form contains a file input, that can't be passed through json
     const formData = new FormData();
     for (const name in formRawData) {

@@ -82,13 +82,13 @@ export const useForm = (initValue, inputName, value, onChange, validator) => {
        * to read the data and to force state changes for the input
        */
       allForms[formId][inputName] = {
+        validator,
+        setIsTouched,
+        setShowInputError,
         value: inputValue,
+        isTouched: isTouched,
         setValue: setInputValue,
         showError: showInputError,
-        setShowInputError,
-        isTouched: isTouched,
-        setIsTouched,
-        validator,
       };
     }
 
