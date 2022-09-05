@@ -33,11 +33,13 @@ function FileInput({
     validator
   );
 
-  // Setup error message
+  // Setup error message for form validation
   const errMsg = inputError ? errorMsg : "";
 
+  // Set up hover state, to change the styling of the Input when a user is dragging a file over
   const [hover, setHover] = useState(false);
 
+  // Set up an Input error message and make it dissapear after three seconds
   const [fileError, setFileError] = useState("");
   useEffect(() => {
     let timer;
@@ -53,8 +55,10 @@ function FileInput({
     };
   }, [fileError]);
 
+  // Join the accepted values
   const acceptedValues = accept ? accept.join(",") : undefined;
 
+  // Handler for validating the provided files and passing them to the onChange function
   const fileChangeHandler = (fileList) => {
     // Make sure value is not undefined
     if (!fileList) {
@@ -70,31 +74,32 @@ function FileInput({
       return;
     }
 
-    // Make sure the file extentions match
+    // Make sure the file extentions area accepted
     const extMatch = Array.from(fileList).reduce((res, { name }) => {
       const someMatchOrAcceptIsEmpty =
         accept.some((ext) => name.endsWith(ext)) || !accept.length;
       return res && someMatchOrAcceptIsEmpty;
     }, true);
+
     if (!extMatch) {
       setFileError("Invalid file extension!");
       return;
     }
 
+    // Update Form state
     inputOnChange(Array.from(fileList));
   };
 
+  // A bunch of handlers for receiving a drag and drop file
   const dragInHandler = (event) => {
     event.preventDefault();
     event.stopPropagation();
-
     setHover(true);
   };
 
   const dragOutHandler = (event) => {
     event.preventDefault();
     event.stopPropagation();
-
     setHover(false);
   };
 
@@ -107,14 +112,15 @@ function FileInput({
     event.preventDefault();
     event.stopPropagation();
     fileChangeHandler(event.dataTransfer.files);
-
     setHover(false);
   };
 
+  // A handler for the file input element
   const fileInputChangeHandler = (event) => {
     fileChangeHandler(event.target.files);
   };
 
+  // Seting up drop area styles
   const dropAreaStyles = new Style(styles);
   dropAreaStyles.add("drop-area");
   if (hover) {
@@ -130,6 +136,7 @@ function FileInput({
         className={styles["native-file"]}
         onChange={fileInputChangeHandler}
       />
+      
       {!inputValue && (
         <div
           className={dropAreaStyles.className}
