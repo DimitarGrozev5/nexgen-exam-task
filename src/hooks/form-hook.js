@@ -104,6 +104,7 @@ export const useForm = (initValue, inputName, value, onChange, validator) => {
     showInputError,
     validator,
     formControl,
+    isTouched,
     setIsTouched,
   ]);
 

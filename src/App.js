@@ -13,162 +13,192 @@ import TextareaInput from "./components/TextareaInput";
 import Form from "./components/Form";
 import FormGroup from "./components/FormGroup";
 import Button from "./components/Button";
+import { useHttpClient } from "./hooks/http-client";
+import Modal from "./components/Modal";
 
 function App() {
-  const [addExtraTextarea, setAddExtraTextarea] = useState(false);
+  // Generate an ID for the Form
   const formId = useId();
 
-  const submitHandler = (data) => {
-    fetch(
-      "https://www.toptal.com/developers/postbin/1662293684099-0788799582514",
-      {
-        method: "POST",
-        // mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    );
+  // Control Form dynamci content
+  const [addExtraTextarea, setAddExtraTextarea] = useState(false);
+
+  // Get the http client
+  const { isLoading, error, clearError, sendRequest } = useHttpClient();
+
+  // Change the text of the submit button, depending on the load status
+  const submitText = isLoading ? "Loading..." : "Submit";
+
+  // Setup state for the information modal
+  const [msgModal, setMsgModal] = useState(null);
+
+  // Setup a handler for the form submit event
+  const submitHandler = async (data) => {
+    try {
+      // Send a post request with the form data
+      await sendRequest.post("https://hookb.in/YVkaKJalYbUQjy0QmeZa", data);
+
+      // Open the information modal
+      setMsgModal(
+        <>
+          Data is posted. You can see the data at{" "}
+          <a target="_blank" href="https://hookbin.com/YVkaKJalYbUQjy0QmeZa">
+            hookbin.com
+          </a>
+        </>
+      );
+    } catch (err) {}
   };
 
   return (
-    <div className="App">
-      <h1 className="h1">Enter your profile information</h1>
-      <Form id={formId} onSubmit={submitHandler}>
-        <FormGroup>
-          <TextInput
-            label="Name (text input):"
-            name="form-text"
-            errorMsg="Please enter a value!!"
-            validator={(val) => val.length > 0}
-            placeholder="First and Last"
-            // initValue="Test"
-          />
+    <>
+      {msgModal && (
+        <Modal
+          title="Information"
+          message={msgModal}
+          onClose={setMsgModal.bind(null, null)}
+        />
+      )}
+      {error && <Modal title="Error" message={error} onClose={clearError} />}
 
-          <EmailInput
-            label="Email (email input):"
-            name="form-email"
-            errorMsg="Please enter a valid email!!"
-            validator={(val) => val.length > 0}
-            placeholder="email@example.com"
-            // initValue="Test"
-          />
+      <div className="App">
+        <h1 className="h1">Enter your information</h1>
+        <Form id={formId} onSubmit={submitHandler}>
+          <FormGroup>
+            <TextInput
+              label="Name (text input):"
+              name="form-text"
+              errorMsg="Please enter a value!!"
+              validator={(val) => val.length > 0}
+              placeholder="First and Last"
+              // initValue="Test"
+            />
 
-          <PasswordInput
-            label="Password (password input):"
-            name="form-password"
-            errorMsg="Please enter a password!"
-            validator={(val) => val.length > 0}
-            placeholder="**********"
-            // initValue="Test"
-          />
+            <EmailInput
+              label="Email (email input):"
+              name="form-email"
+              errorMsg="Please enter a valid email!!"
+              validator={(val) => val.length > 0}
+              placeholder="email@example.com"
+              // initValue="Test"
+            />
 
-          <PasswordInput
-            label="Reenter password:"
-            name="form-password-2"
-            errorMsg="Passwords don't match!"
-            validator={function (val) {
-              return this["form-password"] === val;
-            }}
-            placeholder="**********"
-            // initValue="Test"
-          />
-        </FormGroup>
+            <PasswordInput
+              label="Password (password input):"
+              name="form-password"
+              errorMsg="Please enter a password!"
+              validator={(val) => val.length > 0}
+              placeholder="**********"
+              // initValue="Test"
+            />
 
-        <FormGroup>
-          <SearchInput
-            label="Type a query (search input):"
-            name="form-search"
-            placeholder="Start typing..."
-            // initValue="Test"
-          />
+            <PasswordInput
+              label="Reenter password:"
+              name="form-password-2"
+              errorMsg="Passwords don't match!"
+              validator={function (val) {
+                return this["form-password"] === val;
+              }}
+              placeholder="**********"
+              // initValue="Test"
+            />
+          </FormGroup>
 
-          <NumberInput
-            label="Enter a number (number input):"
-            name="form-number"
-            placeholder="Enter your value"
-            // initValue={15}
-          />
+          <FormGroup>
+            <SearchInput
+              label="Type a query (search input):"
+              name="form-search"
+              placeholder="Start typing..."
+              // initValue="Test"
+            />
 
-          <CheckboxInput
-            label="Check this box! (checkbox input)"
-            name="form-checkbox"
-            // initValue={true}
-          />
-        </FormGroup>
-        <FormGroup>
-          <RadioInput
-            label="Select one of these options! (radio input):"
-            name="test-radio"
-            errorMsg="Some radio error!"
-            validator={(val) => !!val}
-            options={[
-              { val: "ok", label: "OK" },
-              { val: "no", label: "No" },
-              { val: "maybe", label: "Maybe later" },
-            ]}
-            // initValue="no"
-          />
+            <NumberInput
+              label="Enter a number (number input):"
+              name="form-number"
+              placeholder="Enter your value"
+              // initValue={15}
+            />
 
-          <TelInput
-            label="Give me your telephone (tel input):"
-            name="form-tel"
-            errorMsg="Invalid phone!"
-            validator={(val) => val.length > 0}
-            placeholder="088 123 1234"
-            // initValue="Test"
-          />
+            <CheckboxInput
+              label="Check this box! (checkbox input)"
+              name="form-checkbox"
+              // initValue={true}
+            />
+          </FormGroup>
+          <FormGroup>
+            <RadioInput
+              label="Select one of these options! (radio input):"
+              name="test-radio"
+              errorMsg="Some radio error!"
+              validator={(val) => !!val}
+              options={[
+                { val: "ok", label: "OK" },
+                { val: "no", label: "No" },
+                { val: "maybe", label: "Maybe later" },
+              ]}
+              // initValue="no"
+            />
 
-          <DateInput
-            label="Date of birth (date input):"
-            name="form-date"
-            errorMsg="Please enter date!"
-            validator={(val) => !!val}
-            // initValue={new Date()}
-          />
-        </FormGroup>
+            <TelInput
+              label="Give me your telephone (tel input):"
+              name="form-tel"
+              errorMsg="Invalid phone!"
+              validator={(val) => val.length > 0}
+              placeholder="088 123 1234"
+              // initValue="Test"
+            />
 
-        <FormGroup>
-          <TextareaInput
-            label="What's on your mind? (textarea):"
-            name="form-textarea"
-            errorMsg="Some textarea error!"
-            validator={(val) => val.length > 0}
-            placeholder="Enter your value"
-            // initValue="Test"
-          />
-          <CheckboxInput
-            label="Add an extra textarea"
-            name="extra-checkbox"
-            value={addExtraTextarea}
-            onChange={setAddExtraTextarea}
-          />
-          {addExtraTextarea && (
+            <DateInput
+              label="Date of birth (date input):"
+              name="form-date"
+              errorMsg="Please enter date!"
+              validator={(val) => !!val}
+              // initValue={new Date()}
+            />
+          </FormGroup>
+
+          <FormGroup>
             <TextareaInput
-              label="Testing dynamic adding and removing of input elements:"
-              name="form-textarea-extra"
+              label="What's on your mind? (textarea):"
+              name="form-textarea"
               errorMsg="Some textarea error!"
               validator={(val) => val.length > 0}
               placeholder="Enter your value"
               // initValue="Test"
             />
-          )}
+            <CheckboxInput
+              label="Add an extra textarea"
+              name="extra-checkbox"
+              value={addExtraTextarea}
+              onChange={setAddExtraTextarea}
+            />
+            {addExtraTextarea && (
+              <TextareaInput
+                label="Testing dynamic adding and removing of input elements:"
+                name="form-textarea-extra"
+                errorMsg="Some textarea error!"
+                validator={(val) => val.length > 0}
+                placeholder="Enter your value"
+                // initValue="Test"
+              />
+            )}
 
-          <EmailInput
-            label="I want two emails (multiple email input):"
-            name="form1-email"
-            errorMsg="More email for spam please!"
-            validator={(val) => val.length > 1}
-            placeholder="Enter your value"
-            multiple
-            // initValue={["test1", "test2"]}
-          />
-        </FormGroup>
-        <Button type="submit">Submit</Button>
-      </Form>
+            <EmailInput
+              label="I want two emails (multiple email input):"
+              name="form1-email"
+              errorMsg="More email for spam please!"
+              validator={(val) => val.length > 1}
+              placeholder="Enter your value"
+              multiple
+              // initValue={["test1", "test2"]}
+            />
+          </FormGroup>
+          <Button type="submit" disabled={isLoading}>
+            {submitText}
+          </Button>
+        </Form>
 
-      {/* <form>
+        {/* <form>
         <input type="file" />
         <input type="range" />
         <input type="url" />
@@ -180,7 +210,8 @@ function App() {
 
         <input type="color" />
       </form> */}
-    </div>
+      </div>
+    </>
   );
 }
 
