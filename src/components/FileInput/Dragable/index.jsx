@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Style } from "../../../util/styles";
 import styles from "./Dragable.module.css";
 
-function Dragable({ fileChangeHandler, fileError }) {
+function Dragable({ fileChangeHandler, fileError, openFileDialog }) {
   // Set up hover state, to change the styling of the Input when a user is dragging a file over
   const [hover, setHover] = useState(false);
 
@@ -46,6 +46,7 @@ function Dragable({ fileChangeHandler, fileError }) {
       onDragLeave={dragOutHandler}
       onDragOver={dragHandler}
       onDrop={dropHandler}
+      onClick={openFileDialog}
     >
       {fileError && <span className={styles["error-msg"]}>{fileError}</span>}
       {!fileError && "Drop a file or click to open a dialog"}

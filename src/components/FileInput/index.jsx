@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useForm } from "../../hooks/form-hook";
 import Label from "../Label";
@@ -93,6 +93,14 @@ function FileInput({
     fileChangeHandler(event.target.files);
   };
 
+  // Get ref for file input
+  const fileInputRef = useRef();
+  const openFileInput = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
   return (
     <div>
       <Label label={label} error={errMsg}></Label>
@@ -102,10 +110,15 @@ function FileInput({
         multiple={multiple}
         className={styles["native-file"]}
         onChange={fileInputChangeHandler}
+        ref={fileInputRef}
       />
 
       {!inputValue?.length && (
-        <Dragable fileChangeHandler={fileChangeHandler} fileError={fileError} />
+        <Dragable
+          fileChangeHandler={fileChangeHandler}
+          fileError={fileError}
+          openFileDialog={openFileInput}
+        />
       )}
 
       {!!inputValue?.length && (
