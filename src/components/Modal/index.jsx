@@ -1,7 +1,7 @@
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom';
 
-import Button from "../Button";
-import styles from "./Modal.module.css";
+import Button from '../Button';
+import styles from './Modal.module.css';
 
 function Modal({ title, message, onClose }) {
   return ReactDOM.createPortal(
@@ -15,7 +15,7 @@ function Modal({ title, message, onClose }) {
         </footer>
       </div>
     </>,
-    document.getElementById("root-free")
+    document.getElementById('root-free')
   );
 }
 

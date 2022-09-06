@@ -1,15 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
-import { useForm } from "../../hooks/useForm";
-import Label from "../Label";
-import Dragable from "./Dragable";
-import styles from "./FileInput.module.css";
-import SelectedFiles from "./SelectedFiles";
+import { useForm } from '../../hooks/useForm';
+import Label from '../Label';
+import Dragable from './Dragable';
+import styles from './FileInput.module.css';
+import SelectedFiles from './SelectedFiles';
 
 function FileInput({
   label,
   name,
-  errorMsg = "",
+  errorMsg = '',
   validator = () => true,
   initValue = [],
 
@@ -35,18 +35,18 @@ function FileInput({
   );
 
   // Setup error message for form validation
-  const errMsg = inputError ? errorMsg : "";
+  const errMsg = inputError ? errorMsg : '';
 
   // Join the accepted values
-  const acceptedValues = accept ? accept.join(",") : undefined;
+  const acceptedValues = accept ? accept.join(',') : undefined;
 
   // Set up an Input error message and make it dissapear after three seconds
-  const [fileError, setFileError] = useState("");
+  const [fileError, setFileError] = useState('');
   useEffect(() => {
     let timer;
-    if (fileError !== "") {
+    if (fileError !== '') {
       timer = setTimeout(() => {
-        setFileError("");
+        setFileError('');
       }, 3000);
     }
 
@@ -66,7 +66,7 @@ function FileInput({
     // Make sure there is at least one file selected
     const hasLength = multiple ? (a) => a > 0 : (a) => a === 1;
     if (!multiple && fileList.length > 0) {
-      setFileError("Only one file please!");
+      setFileError('Only one file please!');
     }
     if (!hasLength(fileList.length)) {
       return;
@@ -80,7 +80,7 @@ function FileInput({
     }, true);
 
     if (!extMatch) {
-      setFileError("Invalid file extension!");
+      setFileError('Invalid file extension!');
       return;
     }
 
@@ -108,7 +108,7 @@ function FileInput({
         type="file"
         accept={acceptedValues}
         multiple={multiple}
-        className={styles["native-file"]}
+        className={styles['native-file']}
         onChange={fileInputChangeHandler}
         ref={fileInputRef}
       />

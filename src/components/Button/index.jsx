@@ -1,7 +1,7 @@
-import styles from "./Button.module.css";
+import styles from './Button.module.css';
 
 function Button({
-  type = "button",
+  type = 'button',
   disabled = false,
   onClick,
   children: text,
@@ -17,9 +17,9 @@ function Button({
     </button>
   );
 
-  if (type === "submit") {
+  if (type === 'submit') {
     button = (
-      <div className={styles["submit-wrapper"]}>
+      <div className={styles['submit-wrapper']}>
         <button
           onClick={onClick}
           disabled={disabled}

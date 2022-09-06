@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo, useEffect } from "react";
+import { useState, useRef, useMemo, useEffect } from 'react';
 
 export const useHTTPClient = () => {
   // State for storing the fetch status and errors
@@ -40,14 +40,14 @@ export const useHTTPClient = () => {
         /**
          * If the body is not null and is not a FormData Object, send it as JSON
          * by stringifying it and setting up the correct headers
-         * 
+         *
          * If the body is a FormData Object, then send it directly
          * The fetch method sets up the correct headers automaticaly
          */
         if (body && !(body instanceof FormData)) {
           config.body = JSON.stringify(body);
           config.headers = {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           };
         }
         if (body && body instanceof FormData) {
@@ -81,10 +81,10 @@ export const useHTTPClient = () => {
       };
 
     return {
-      get: send("GET"),
-      post: send("POST"),
-      patch: send("PATCH"),
-      delete: send("DELETE"),
+      get: send('GET'),
+      post: send('POST'),
+      patch: send('PATCH'),
+      delete: send('DELETE'),
     };
   }, []);
 
@@ -96,7 +96,7 @@ export const useHTTPClient = () => {
     []
   );
 
-  const clearError = () => setError("");
+  const clearError = () => setError('');
 
   return { isLoading, error, sendRequest, clearError };
 };

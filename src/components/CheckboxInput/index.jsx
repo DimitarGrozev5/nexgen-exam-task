@@ -1,6 +1,6 @@
-import { useForm } from "../../hooks/useForm";
-import Label from "../Label";
-import styles from "./CheckboxInput.module.css";
+import { useForm } from '../../hooks/useForm';
+import Label from '../Label';
+import styles from './CheckboxInput.module.css';
 
 function CheckboxInput({
   label,

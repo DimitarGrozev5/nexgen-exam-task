@@ -1,11 +1,11 @@
-import { useForm } from "../../hooks/useForm";
-import Label from "../Label";
-import styles from "./NumberInput.module.css";
+import { useForm } from '../../hooks/useForm';
+import Label from '../Label';
+import styles from './NumberInput.module.css';
 
 function NumberInput({
   label,
   name,
-  errorMsg = "",
+  errorMsg = '',
   validator = () => true,
   initValue = 0,
 
@@ -41,7 +41,7 @@ function NumberInput({
   const changeHandler = (event) => inputOnChange(Number(event.target.value));
 
   // Setup error message
-  const errMsg = inputError ? errorMsg : "";
+  const errMsg = inputError ? errorMsg : '';
 
   // Function to handle the increment and decrement buttons
   const increment = (dir) => () => {
@@ -53,7 +53,7 @@ function NumberInput({
 
   return (
     <Label label={label} error={errMsg}>
-      <div className={styles["number-container"]}>
+      <div className={styles['number-container']}>
         <button type="button" onClick={increment(-1)} className={styles.left}>
           -
         </button>

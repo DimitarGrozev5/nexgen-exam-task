@@ -1,14 +1,14 @@
-import { useForm } from "../../hooks/useForm";
-import { Style } from "../../util/styles";
-import Label from "../Label";
-import styles from "./SearchInput.module.css";
+import { useForm } from '../../hooks/useForm';
+import { Style } from '../../util/styles';
+import Label from '../Label';
+import styles from './SearchInput.module.css';
 
 function SearchInput({
   label,
   name,
-  errorMsg = "",
+  errorMsg = '',
   validator = () => true,
-  initValue = "",
+  initValue = '',
 
   placeholder,
   maxLength,
@@ -37,28 +37,28 @@ function SearchInput({
   const changeHandler = (event) => inputOnChange(event.target.value);
 
   // Setup error message
-  const errMsg = inputError ? errorMsg : "";
+  const errMsg = inputError ? errorMsg : '';
 
   // Helper function for clearing the field
-  const clearField = () => inputOnChange("");
+  const clearField = () => inputOnChange('');
 
   const showClearButton = !!inputValue.length;
 
   // Setup input css styling
   const inputStyles = new Style(styles);
-  inputStyles.add("input");
+  inputStyles.add('input');
   if (inputError) {
-    inputStyles.add("error");
+    inputStyles.add('error');
   }
   if (showClearButton) {
-    inputStyles.add("with-button");
+    inputStyles.add('with-button');
   }
 
   const inputClassName = inputStyles.className;
 
   return (
     <Label label={label} error={errMsg}>
-      <div className={styles["input-container"]}>
+      <div className={styles['input-container']}>
         <input
           name={name}
           value={inputValue}

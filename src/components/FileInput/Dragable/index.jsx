@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { Style } from "../../../util/styles";
-import Button from "../../Button";
-import styles from "./Dragable.module.css";
+import { Style } from '../../../util/styles';
+import Button from '../../Button';
+import styles from './Dragable.module.css';
 
 function Dragable({ fileChangeHandler, fileError, openFileDialog }) {
   // Set up hover state, to change the styling of the Input when a user is dragging a file over
@@ -35,9 +35,9 @@ function Dragable({ fileChangeHandler, fileError, openFileDialog }) {
 
   // Seting up drop area styles
   const dropAreaStyles = new Style(styles);
-  dropAreaStyles.add("drop-area");
+  dropAreaStyles.add('drop-area');
   if (hover) {
-    dropAreaStyles.add("active");
+    dropAreaStyles.add('active');
   }
 
   return (
@@ -50,8 +50,8 @@ function Dragable({ fileChangeHandler, fileError, openFileDialog }) {
         onDrop={dropHandler}
         onClick={openFileDialog}
       >
-        {fileError && <span className={styles["error-msg"]}>{fileError}</span>}
-        {!fileError && "Drop a file or click to open a dialog"}
+        {fileError && <span className={styles['error-msg']}>{fileError}</span>}
+        {!fileError && 'Drop a file or click to open a dialog'}
       </div>
       <div className={styles.button}>
         <Button onClick={openFileDialog}>Add file</Button>

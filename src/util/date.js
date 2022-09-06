@@ -1,10 +1,10 @@
-import { lz } from "./leadingZeros";
+import { lz } from './leadingZeros';
 
 export const dateToInput = (date) => {
   const dt = new Date(date);
 
-  if (dt.toString() === "Invalid Date") {
-    return "";
+  if (dt.toString() === 'Invalid Date') {
+    return '';
   }
 
   const y = lz(dt.getFullYear(), 4);
@@ -14,6 +14,6 @@ export const dateToInput = (date) => {
 };
 
 export const inputToDate = (input) => {
-  const [y, m, d] = input.split("-");
+  const [y, m, d] = input.split('-');
   return new Date(Number(y), Number(m) - 1, Number(d));
 };

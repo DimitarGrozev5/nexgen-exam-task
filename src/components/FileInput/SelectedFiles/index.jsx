@@ -1,4 +1,4 @@
-import styles from "./SelectedFiles.module.css";
+import styles from './SelectedFiles.module.css';
 
 function SelectedFiles({ inputValue, inputOnChange }) {
   // Handler for removing a file
@@ -8,11 +8,11 @@ function SelectedFiles({ inputValue, inputOnChange }) {
   };
 
   return (
-    <div className={styles["selected-files"]}>
+    <div className={styles['selected-files']}>
       <ul>
         {inputValue.map((file) => (
           <li key={file.name} className={styles.file}>
-            {file.name}{" "}
+            {file.name}{' '}
             <button onClick={removeFileHandler(file.name)} type="button">
               x
             </button>

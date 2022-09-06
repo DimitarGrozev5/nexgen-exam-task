@@ -1,13 +1,13 @@
-import { useForm } from "../../hooks/useForm";
-import Label from "../Label";
-import MultipleEmail from "./MultipleEmail";
+import { useForm } from '../../hooks/useForm';
+import Label from '../Label';
+import MultipleEmail from './MultipleEmail';
 
 function EmailInput({
   label,
   name,
-  errorMsg = "",
+  errorMsg = '',
   validator = () => true,
-  initValue = "",
+  initValue = '',
 
   placeholder,
   maxLength,
@@ -25,7 +25,7 @@ function EmailInput({
    * If the parent has passed value and onChange props,
    * the Input will be controlled not by the Form, but by the parent
    */
-  const defaultInitValue = initValue || (multiple ? [] : "");
+  const defaultInitValue = initValue || (multiple ? [] : '');
   const { inputValue, inputOnChange, inputError, inputOnBlur } = useForm(
     defaultInitValue,
     name,
@@ -38,7 +38,7 @@ function EmailInput({
   const changeHandler = (event) => inputOnChange(event.target.value);
 
   // Setup error message
-  const errMsg = inputError ? errorMsg : "";
+  const errMsg = inputError ? errorMsg : '';
 
   // Render this for a simple email input field
   let emailComponent = (

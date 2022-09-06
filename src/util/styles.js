@@ -13,6 +13,6 @@ export class Style {
   }
 
   get className() {
-    return this.styles.join(" ");
+    return this.styles.join(' ');
   }
 }

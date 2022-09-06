@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from 'react';
 
-import { FormContext } from "../components/Form/form-context";
+import { FormContext } from '../components/Form/form-context';
 
 /**
  * allForms is an object/dictionery and contains all of the forms in the application

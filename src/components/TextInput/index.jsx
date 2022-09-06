@@ -1,12 +1,12 @@
-import { useForm } from "../../hooks/useForm";
-import Label from "../Label";
+import { useForm } from '../../hooks/useForm';
+import Label from '../Label';
 
 function TextInput({
   label,
   name,
-  errorMsg = "",
+  errorMsg = '',
   validator = () => true,
-  initValue = "",
+  initValue = '',
 
   placeholder,
   maxLength,
@@ -36,7 +36,7 @@ function TextInput({
   const changeHandler = (event) => inputOnChange(event.target.value);
 
   // Setup error message
-  const errMsg = inputError ? errorMsg : "";
+  const errMsg = inputError ? errorMsg : '';
 
   return (
     <Label label={label} error={errMsg}>

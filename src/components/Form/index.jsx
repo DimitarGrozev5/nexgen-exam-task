@@ -1,6 +1,6 @@
-import { useFormData } from "../../hooks/useForm";
-import { FormContext } from "./form-context";
-import styles from "./Form.module.css";
+import { useFormData } from '../../hooks/useForm';
+import { FormContext } from './form-context';
+import styles from './Form.module.css';
 
 /**
  * Form Component is used to wrap Input Components in an html form

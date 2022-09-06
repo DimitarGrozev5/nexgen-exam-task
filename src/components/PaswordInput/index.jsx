@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useForm } from "../../hooks/useForm";
-import { Style } from "../../util/styles";
-import Label from "../Label";
-import styles from "./PasswordInput.module.css";
+import { useForm } from '../../hooks/useForm';
+import { Style } from '../../util/styles';
+import Label from '../Label';
+import styles from './PasswordInput.module.css';
 
 function PasswordInput({
   label,
   name,
-  errorMsg = "",
+  errorMsg = '',
   validator = () => true,
-  initValue = "",
+  initValue = '',
 
   placeholder,
   maxLength,
@@ -39,32 +39,32 @@ function PasswordInput({
   const changeHandler = (event) => inputOnChange(event.target.value);
 
   // Setup error message
-  const errMsg = inputError ? errorMsg : "";
+  const errMsg = inputError ? errorMsg : '';
 
   // State for controlling password input visibility
   const [asText, setAsText] = useState(false);
   const toggleType = () => setAsText((t) => !t);
 
   // Setup labels, based on the password visibility
-  const inputType = asText ? "text" : "password";
-  const buttonCaption = asText ? "Hide" : "Show";
+  const inputType = asText ? 'text' : 'password';
+  const buttonCaption = asText ? 'Hide' : 'Show';
 
   const showButton = !!inputValue.length;
 
   // Setup input css styling
   const inputStyles = new Style(styles);
-  inputStyles.add("input");
+  inputStyles.add('input');
   if (inputError) {
-    inputStyles.add("error");
+    inputStyles.add('error');
   }
   if (showButton) {
-    inputStyles.add("with-button");
+    inputStyles.add('with-button');
   }
   const inputClassName = inputStyles.className;
 
   return (
     <Label label={label} error={errMsg}>
-      <div className={styles["input-container"]}>
+      <div className={styles['input-container']}>
         <input
           name={name}
           value={inputValue}
@@ -79,7 +79,7 @@ function PasswordInput({
         />
         {showButton && (
           <button
-            className={inputError ? styles.error : ""}
+            className={inputError ? styles.error : ''}
             type="button"
             onClick={toggleType}
           >

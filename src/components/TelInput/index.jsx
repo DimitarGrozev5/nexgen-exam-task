@@ -1,12 +1,12 @@
-import { useForm } from "../../hooks/useForm";
-import Label from "../Label";
+import { useForm } from '../../hooks/useForm';
+import Label from '../Label';
 
 function TelInput({
   label,
   name,
-  errorMsg = "",
+  errorMsg = '',
   validator = () => true,
-  initValue = "",
+  initValue = '',
 
   placeholder,
   maxLength,
@@ -35,7 +35,7 @@ function TelInput({
   const changeHandler = (event) => inputOnChange(event.target.value);
 
   // Setup error message
-  const errMsg = inputError ? errorMsg : "";
+  const errMsg = inputError ? errorMsg : '';
 
   return (
     <Label label={label} error={errMsg}>

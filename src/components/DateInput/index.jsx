@@ -1,11 +1,11 @@
-import { useForm } from "../../hooks/useForm";
-import { dateToInput, inputToDate } from "../../util/date";
-import Label from "../Label";
+import { useForm } from '../../hooks/useForm';
+import { dateToInput, inputToDate } from '../../util/date';
+import Label from '../Label';
 
 function DateInput({
   label,
   name,
-  errorMsg = "",
+  errorMsg = '',
   validator = () => true,
   initValue = undefined,
 
@@ -17,7 +17,7 @@ function DateInput({
   onChange,
 }) {
   /**
-   * 
+   *
    */
   const { inputValue, inputOnChange, inputError, inputOnBlur } = useForm(
     initValue,
@@ -32,7 +32,7 @@ function DateInput({
     inputOnChange(inputToDate(event.target.value));
 
   // Setup error message
-  const errMsg = inputError ? errorMsg : "";
+  const errMsg = inputError ? errorMsg : '';
 
   return (
     <Label label={label} error={errMsg}>
@@ -40,7 +40,7 @@ function DateInput({
         name={name}
         value={dateToInput(inputValue)}
         onChange={changeHandler}
-          onBlur={inputOnBlur}
+        onBlur={inputOnBlur}
         type="date"
         max={max}
         min={min}

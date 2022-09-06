@@ -1,4 +1,4 @@
-import styles from "./FormGroup.module.css";
+import styles from './FormGroup.module.css';
 
 /**
  * FormGroup organizes it's child components in a single Card,
@@ -6,7 +6,11 @@ import styles from "./FormGroup.module.css";
  */
 function FormGroup({ onSubmit, children }) {
   // TODO: Maybe add group title?
-  return <div className={styles.group} onSubmit={onSubmit}>{children}</div>;
+  return (
+    <div className={styles.group} onSubmit={onSubmit}>
+      {children}
+    </div>
+  );
 }
 
 export default FormGroup;

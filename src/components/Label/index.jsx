@@ -1,15 +1,15 @@
-import styles from "./InputWrapper.module.css";
-import { Style } from "../../util/styles";
+import styles from './InputWrapper.module.css';
+import { Style } from '../../util/styles';
 
 function Label({ label, error, children: inputComponent, textFirst = true }) {
   // Setup input styles
   const inputStyles = new Style(styles);
-  inputStyles.add("input-container");
+  inputStyles.add('input-container');
   if (error && error.length) {
-    inputStyles.add("error");
+    inputStyles.add('error');
   }
   if (!textFirst) {
-    inputStyles.add("single-line");
+    inputStyles.add('single-line');
   }
   const inputClassNames = inputStyles.className;
 

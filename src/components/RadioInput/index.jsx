@@ -1,11 +1,11 @@
-import { useForm } from "../../hooks/useForm";
-import Label from "../Label";
-import styles from "./RadioInput.module.css";
+import { useForm } from '../../hooks/useForm';
+import Label from '../Label';
+import styles from './RadioInput.module.css';
 
 function RadioInput({
   label,
   name,
-  errorMsg = "",
+  errorMsg = '',
   validator = () => true,
   initValue = undefined,
 
@@ -33,7 +33,7 @@ function RadioInput({
   const changeHandler = (val) => () => inputOnChange(val);
 
   // Setup error message
-  const errMsg = inputError ? errorMsg : "";
+  const errMsg = inputError ? errorMsg : '';
 
   // Function that maps an Option { val, label} to a Radio Input Component
   const mapOptionToRadio = ({ val, label }) => (

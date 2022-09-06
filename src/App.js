@@ -1,22 +1,22 @@
-import { useId, useState } from "react";
+import { useId, useState } from 'react';
 
-import "./App.css";
-import TextInput from "./components/TextInput";
-import EmailInput from "./components/EmailInput";
-import PasswordInput from "./components/PaswordInput";
-import SearchInput from "./components/SearchInput";
-import NumberInput from "./components/NumberInput";
-import CheckboxInput from "./components/CheckboxInput";
-import RadioInput from "./components/RadioInput";
-import TelInput from "./components/TelInput";
-import DateInput from "./components/DateInput";
-import TextareaInput from "./components/TextareaInput";
-import Form from "./components/Form";
-import FormGroup from "./components/FormGroup";
-import Button from "./components/Button";
-import { useHTTPClient } from "./hooks/useHTTPClient";
-import Modal from "./components/Modal";
-import FileInput from "./components/FileInput";
+import './App.css';
+import TextInput from './components/TextInput';
+import EmailInput from './components/EmailInput';
+import PasswordInput from './components/PaswordInput';
+import SearchInput from './components/SearchInput';
+import NumberInput from './components/NumberInput';
+import CheckboxInput from './components/CheckboxInput';
+import RadioInput from './components/RadioInput';
+import TelInput from './components/TelInput';
+import DateInput from './components/DateInput';
+import TextareaInput from './components/TextareaInput';
+import Form from './components/Form';
+import FormGroup from './components/FormGroup';
+import Button from './components/Button';
+import { useHTTPClient } from './hooks/useHTTPClient';
+import Modal from './components/Modal';
+import FileInput from './components/FileInput';
 
 function App() {
   // Generate an ID for the Form
@@ -32,7 +32,7 @@ function App() {
   const { isLoading, error, clearError, sendRequest } = useHTTPClient();
 
   // Change the text of the submit button, depending on the load status
-  const submitText = isLoading ? "Loading..." : "Submit";
+  const submitText = isLoading ? 'Loading...' : 'Submit';
 
   // Setup a handler for the form submit event
   const submitHandler = async (formRawData) => {
@@ -52,7 +52,7 @@ function App() {
       // Open the information modal
       setMsgModal(
         <>
-          Data is posted. You can see the data at{" "}
+          Data is posted. You can see the data at{' '}
           <a
             target="_blank"
             rel="noreferrer"
@@ -112,7 +112,7 @@ function App() {
               name="form-password-2"
               errorMsg="Passwords don't match!"
               validator={function (val) {
-                return this["form-password"] === val;
+                return this['form-password'] === val;
               }}
               placeholder="validator here is a bit different"
               // initValue="Test"
@@ -147,9 +147,9 @@ function App() {
               errorMsg="Some radio error!"
               validator={(val) => !!val}
               options={[
-                { val: "ok", label: "OK" },
-                { val: "no", label: "No" },
-                { val: "maybe", label: "Maybe later" },
+                { val: 'ok', label: 'OK' },
+                { val: 'no', label: 'No' },
+                { val: 'maybe', label: 'Maybe later' },
               ]}
               // initValue="no"
             />
@@ -215,7 +215,7 @@ function App() {
               name="form-file"
               errorMsg="Please input a file"
               validator={(val) => val?.length === 1}
-              accept={[".css", ".js"]}
+              accept={['.css', '.js']}
             />
           </FormGroup>
 
