@@ -45,7 +45,7 @@ function NumberInput({
 
   // Function to handle the increment and decrement buttons
   const increment = (dir) => () => {
-    if (isNaN(Number(inputValue))) {
+    if (Number.isNaN(Number(inputValue))) {
       inputOnChange(dir);
     }
     inputOnChange(Number(inputValue) + dir);
