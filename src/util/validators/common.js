@@ -6,7 +6,7 @@
  * Validators are called with an object, containing
  * all of the values in the Form, and the value of
  * of the current Input.
- * 
+ *
  * TODO: Make each validator function accept and return an error message
  */
 
@@ -36,7 +36,7 @@ export const greatherThan = (num) => (ctx, val) => val > num;
 export const lessThan = (num) => (ctx, val) => val < num;
 
 export const between = (min, max) => (ctx, val) =>
-  greatherThan(min)(val) && lessThan(max)(val);
+  greatherThan(min)(ctx, val) && lessThan(max)(ctx, val);
 
 // Check for equality
 export const isEqualTo = (val1) => (ctx, val) => val1 === val;
