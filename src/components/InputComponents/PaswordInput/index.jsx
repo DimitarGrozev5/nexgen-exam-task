@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { useForm } from '../../hooks/useForm';
-import { Style } from '../../util/styles';
-import Label from '../Label';
+import { useForm } from '../../../hooks/useForm';
+import { Style } from '../../../util/styles';
+import Label from '../../Label';
 import styles from './PasswordInput.module.css';
 
 function PasswordInput({

@@ -1,22 +1,33 @@
 import { useId, useState } from 'react';
 
 import './App.css';
-import TextInput from './components/TextInput';
-import EmailInput from './components/EmailInput';
-import PasswordInput from './components/PaswordInput';
-import SearchInput from './components/SearchInput';
-import NumberInput from './components/NumberInput';
-import CheckboxInput from './components/CheckboxInput';
-import RadioInput from './components/RadioInput';
-import TelInput from './components/TelInput';
-import DateInput from './components/DateInput';
-import TextareaInput from './components/TextareaInput';
+import TextInput from './components/InputComponents/TextInput';
+import EmailInput from './components/InputComponents/EmailInput';
+import PasswordInput from './components/InputComponents/PaswordInput';
+import SearchInput from './components/InputComponents/SearchInput';
+import NumberInput from './components/InputComponents/NumberInput';
+import CheckboxInput from './components/InputComponents/CheckboxInput';
+import RadioInput from './components/InputComponents/RadioInput';
+import TelInput from './components/InputComponents/TelInput';
+import DateInput from './components/InputComponents/DateInput';
+import TextareaInput from './components/InputComponents/TextareaInput';
 import Form from './components/Form';
 import FormGroup from './components/FormGroup';
 import Button from './components/Button';
 import { useHTTPClient } from './hooks/useHTTPClient';
 import Modal from './components/Modal';
-import FileInput from './components/FileInput';
+import FileInput from './components/InputComponents/FileInput';
+import {
+  between,
+  isEmailLike,
+  isLongerThan,
+  isTruthy,
+} from './util/validators/common';
+import {
+  confirmPassword,
+  isValidPassword,
+} from './util/validators/password-validator';
+import { validEmailsList } from './util/validators/multiple-email';
 
 function App() {
   // Generate an ID for the Form
@@ -84,7 +95,7 @@ function App() {
               label="Name (text input):"
               name="form-text"
               errorMsg="Please enter a value!!"
-              validator={(val) => val.length > 0}
+              validator={isLongerThan(0)}
               placeholder="First and Last"
               // initValue="Test"
             />
@@ -93,7 +104,7 @@ function App() {
               label="Email (email input):"
               name="form-email"
               errorMsg="Please enter a valid email!!"
-              validator={(val) => val.length > 0}
+              validator={isEmailLike()}
               placeholder="email@example.com"
               // initValue="Test"
             />
@@ -102,7 +113,7 @@ function App() {
               label="Password (password input):"
               name="form-password"
               errorMsg="Please enter a password!"
-              validator={(val) => val.length > 0}
+              validator={isValidPassword()}
               placeholder="**********"
               // initValue="Test"
             />
@@ -111,10 +122,8 @@ function App() {
               label="Reenter password:"
               name="form-password-2"
               errorMsg="Passwords don't match!"
-              validator={function (val) {
-                return this['form-password'] === val;
-              }}
-              placeholder="validator here is a bit different"
+              validator={confirmPassword('form-password')}
+              placeholder="validator here references other field"
               // initValue="Test"
             />
           </FormGroup>
@@ -131,6 +140,8 @@ function App() {
               label="Enter a number (number input):"
               name="form-number"
               placeholder="Enter your value"
+              errorMsg="Number is out of bounds"
+              validator={between(3, 10)}
               // initValue={15}
             />
 
@@ -145,7 +156,7 @@ function App() {
               label="Select one of these options! (radio input):"
               name="test-radio"
               errorMsg="Some radio error!"
-              validator={(val) => !!val}
+              validator={isTruthy()}
               options={[
                 { val: 'ok', label: 'OK' },
                 { val: 'no', label: 'No' },
@@ -158,7 +169,7 @@ function App() {
               label="Give me your telephone (tel input):"
               name="form-tel"
               errorMsg="Invalid phone!"
-              validator={(val) => val.length > 0}
+              validator={isLongerThan(6)}
               placeholder="088 123 1234"
               // initValue="Test"
             />
@@ -167,7 +178,7 @@ function App() {
               label="Date of birth (date input):"
               name="form-date"
               errorMsg="Please enter date!"
-              validator={(val) => !!val}
+              validator={isTruthy()}
               // initValue={new Date()}
             />
           </FormGroup>
@@ -177,7 +188,7 @@ function App() {
               label="What's on your mind? (textarea):"
               name="form-textarea"
               errorMsg="Some textarea error!"
-              validator={(val) => val.length > 0}
+              validator={isLongerThan(0)}
               placeholder="Enter your value"
               // initValue="Test"
             />
@@ -202,7 +213,7 @@ function App() {
               label="I want two emails (multiple email input):"
               name="form1-email"
               errorMsg="More email for spam please!"
-              validator={(val) => val.length > 1}
+              validator={validEmailsList(1)}
               placeholder="Enter your value"
               multiple
               // initValue={["test1", "test2"]}
@@ -214,7 +225,7 @@ function App() {
               label="Select a file (file input):"
               name="form-file"
               errorMsg="Please input a file"
-              validator={(val) => val?.length === 1}
+              validator={isLongerThan(0)}
               accept={['.css', '.js']}
             />
           </FormGroup>

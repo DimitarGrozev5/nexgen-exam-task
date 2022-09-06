@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { useForm } from '../../hooks/useForm';
-import Label from '../Label';
+import { useForm } from '../../../hooks/useForm';
+import Label from '../../Label';
 import Dragable from './Dragable';
 import styles from './FileInput.module.css';
 import SelectedFiles from './SelectedFiles';

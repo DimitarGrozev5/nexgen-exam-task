@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { Style } from '../../../util/styles';
-import Button from '../../Button';
+import { Style } from '../../../../util/styles';
+import Button from '../../../Button';
 import styles from './Dragable.module.css';
 
 function Dragable({ fileChangeHandler, fileError, openFileDialog }) {

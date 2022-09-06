@@ -31,12 +31,12 @@ const getVals = (formId) =>
  * containing all of the forms input names and values as key-value pairs
  *
  * In this way the Input components accept a *validator* function,
- * that uses the *this* keyword, to reference other inputs in the same form
+ * that can access other fields in the form
  */
 const validate = (formId, inputName) => {
   const validator = allForms[formId][inputName].validator;
   const ctx = getVals(formId);
-  const isValid = validator.call(ctx, allForms[formId][inputName].value);
+  const isValid = validator(ctx, allForms[formId][inputName].value);
 
   return isValid;
 };

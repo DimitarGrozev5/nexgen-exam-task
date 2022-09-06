@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Running the App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Check if the post bin is still active
 
-## Available Scripts
+- First go to [HookBin](https://hookbin.com/YVkaKJalYbUQjy0QmeZa) to check if the **_post bin_** is still active
+- If the bin is not active, you will need to create a new bin, by going to [HookBin](https://hookbin.com/) and clicking on _CREATE NEW ENDPOIN_
+- Copy the _bin **id**_ to the `.env` file
 
-In the project directory, you can run:
+## Starting the App
 
-### `npm start`
+- To start the App first run `npm i` in the project folder, to install dependencies
+- Run `npm start` to start the development server
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Project structure
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+The project is build using _create-react-app_. Component styling is handled with _css modules_. No external libraries are used.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The App posts data to a _post bin_ - [HookBin](https://hookbin.com/)
 
-### `npm run build`
+## App structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The App tries to solve three problems, related to Form creation, state managment and data posting:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Upgrade the default _html input elements_ to provide a consistent development and user experience
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Finding a way to build a Form and manage its state, that minimizes code duplication and allows for simple development of forms
 
-### `npm run eject`
+3. Sending data to a remote server, while again minimizing code duplication and allowing for user feedback
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+My solution is the following:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Create a **Form** Component, that provides a **Context** for all of the child Input elements inside it.
+- Create **Input** Components, that are build on top of the default _html input elements_.
+- The **Input** Components can be controlled in one of two ways:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. By providing a **value** and **onChange** props and handling the Component state the usual way
+2. By **not** providing these props and letting the parent Form take controll, trough a **useForm** custom hook
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- The **Form** Component accepts an _onSubmit_ function, that will be called when the user submits the form, with an object of key-value pairs - { [inputName]: inputValue }
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Every **Input** Component also can accept an _error message_ and a _validator function_. These values will be used for input validation.
