@@ -1,7 +1,9 @@
 /**
- * Combinators are function that take multiple validator functions
+ * Combinators are functions that take multiple validator functions
  * and combine them, to return a new validator function, that takes
  * a *ctx* object and a *val* value for validation
+ * 
+ * Combinator: (Validator[]) => Validator
  */
 
 // All of the provided validator functions have to be valid
