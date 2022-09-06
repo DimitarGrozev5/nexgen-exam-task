@@ -1,22 +1,22 @@
 import { useId, useState } from 'react';
 
 import './App.css';
-import TextInput from './components/TextInput';
-import EmailInput from './components/EmailInput';
-import PasswordInput from './components/PaswordInput';
-import SearchInput from './components/SearchInput';
-import NumberInput from './components/NumberInput';
-import CheckboxInput from './components/CheckboxInput';
-import RadioInput from './components/RadioInput';
-import TelInput from './components/TelInput';
-import DateInput from './components/DateInput';
-import TextareaInput from './components/TextareaInput';
+import TextInput from './components/InputComponents/TextInput';
+import EmailInput from './components/InputComponents/EmailInput';
+import PasswordInput from './components/InputComponents/PaswordInput';
+import SearchInput from './components/InputComponents/SearchInput';
+import NumberInput from './components/InputComponents/NumberInput';
+import CheckboxInput from './components/InputComponents/CheckboxInput';
+import RadioInput from './components/InputComponents/RadioInput';
+import TelInput from './components/InputComponents/TelInput';
+import DateInput from './components/InputComponents/DateInput';
+import TextareaInput from './components/InputComponents/TextareaInput';
 import Form from './components/Form';
 import FormGroup from './components/FormGroup';
 import Button from './components/Button';
 import { useHTTPClient } from './hooks/useHTTPClient';
 import Modal from './components/Modal';
-import FileInput from './components/FileInput';
+import FileInput from './components/InputComponents/FileInput';
 import {
   between,
   isEmailLike,

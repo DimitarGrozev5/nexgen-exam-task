@@ -1,8 +1,7 @@
-import { useForm } from '../../hooks/useForm';
-import Label from '../Label';
-import MultipleEmail from './MultipleEmail';
+import { useForm } from '../../../hooks/useForm';
+import Label from '../../Label';
 
-function EmailInput({
+function TextInput({
   label,
   name,
   errorMsg = '',
@@ -13,7 +12,7 @@ function EmailInput({
   maxLength,
   minLength,
   readOnly,
-  multiple,
+  spellCheck,
 
   value,
   onChange,
@@ -25,9 +24,8 @@ function EmailInput({
    * If the parent has passed value and onChange props,
    * the Input will be controlled not by the Form, but by the parent
    */
-  const defaultInitValue = initValue || (multiple ? [] : '');
   const { inputValue, inputOnChange, inputError, inputOnBlur } = useForm(
-    defaultInitValue,
+    initValue,
     name,
     value,
     onChange,
@@ -40,39 +38,22 @@ function EmailInput({
   // Setup error message
   const errMsg = inputError ? errorMsg : '';
 
-  // Render this for a simple email input field
-  let emailComponent = (
+  return (
     <Label label={label} error={errMsg}>
       <input
         name={name}
         value={inputValue}
         onChange={changeHandler}
         onBlur={inputOnBlur}
-        type="email"
+        type="text"
         placeholder={placeholder}
         maxLength={maxLength}
         minLength={minLength}
         readOnly={readOnly}
-        multiple={multiple}
+        spellCheck={spellCheck}
       />
     </Label>
   );
-
-  // Render this for multiple email input fields
-  if (multiple) {
-    emailComponent = (
-      <MultipleEmail
-        label={label}
-        name={name}
-        errorMsg={errMsg}
-        value={inputValue}
-        onChange={inputOnChange}
-        onBlur={inputOnBlur}
-      />
-    );
-  }
-
-  return emailComponent;
 }
 
-export default EmailInput;
+export default TextInput;

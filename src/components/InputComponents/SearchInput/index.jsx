@@ -1,6 +1,6 @@
-import { useForm } from '../../hooks/useForm';
-import { Style } from '../../util/styles';
-import Label from '../Label';
+import { useForm } from '../../../hooks/useForm';
+import { Style } from '../../../util/styles';
+import Label from '../../Label';
 import styles from './SearchInput.module.css';
 
 function SearchInput({

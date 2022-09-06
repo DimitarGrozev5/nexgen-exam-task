@@ -1,7 +1,7 @@
-import { useForm } from '../../hooks/useForm';
-import Label from '../Label';
+import { useForm } from '../../../hooks/useForm';
+import Label from '../../Label';
 
-function TextareaInput({
+function TelInput({
   label,
   name,
   errorMsg = '',
@@ -9,11 +9,9 @@ function TextareaInput({
   initValue = '',
 
   placeholder,
-  disabled,
   maxLength,
   minLength,
   readOnly,
-  spellCheck,
 
   value,
   onChange,
@@ -41,21 +39,19 @@ function TextareaInput({
 
   return (
     <Label label={label} error={errMsg}>
-      <textarea
+      <input
         name={name}
         value={inputValue}
         onChange={changeHandler}
         onBlur={inputOnBlur}
-        type="text"
+        type="tel"
         placeholder={placeholder}
-        disabled={disabled}
         maxLength={maxLength}
         minLength={minLength}
         readOnly={readOnly}
-        spellCheck={spellCheck}
-      ></textarea>
+      />
     </Label>
   );
 }
 
-export default TextareaInput;
+export default TelInput;

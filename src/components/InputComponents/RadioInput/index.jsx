@@ -1,5 +1,5 @@
-import { useForm } from '../../hooks/useForm';
-import Label from '../Label';
+import { useForm } from '../../../hooks/useForm';
+import Label from '../../Label';
 import styles from './RadioInput.module.css';
 
 function RadioInput({

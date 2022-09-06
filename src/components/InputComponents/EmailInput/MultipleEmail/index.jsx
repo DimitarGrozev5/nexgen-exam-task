@@ -1,7 +1,8 @@
-import styles from './EmailInput.module.css';
-import Label from '../../Label';
 import { useState } from 'react';
-import { Style } from '../../../util/styles';
+
+import styles from './EmailInput.module.css';
+import Label from '../../../Label';
+import { Style } from '../../../../util/styles';
 
 function MultipleEmail({
   label,

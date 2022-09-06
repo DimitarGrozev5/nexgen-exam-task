@@ -1,6 +1,6 @@
-import { useForm } from '../../hooks/useForm';
-import { dateToInput, inputToDate } from '../../util/date';
-import Label from '../Label';
+import { useForm } from '../../../hooks/useForm';
+import { dateToInput, inputToDate } from '../../../util/date';
+import Label from '../../Label';
 
 function DateInput({
   label,

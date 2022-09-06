@@ -1,7 +1,7 @@
-import { useForm } from '../../hooks/useForm';
-import Label from '../Label';
+import { useForm } from '../../../hooks/useForm';
+import Label from '../../Label';
 
-function TextInput({
+function TextareaInput({
   label,
   name,
   errorMsg = '',
@@ -9,6 +9,7 @@ function TextInput({
   initValue = '',
 
   placeholder,
+  disabled,
   maxLength,
   minLength,
   readOnly,
@@ -40,20 +41,21 @@ function TextInput({
 
   return (
     <Label label={label} error={errMsg}>
-      <input
+      <textarea
         name={name}
         value={inputValue}
         onChange={changeHandler}
         onBlur={inputOnBlur}
         type="text"
         placeholder={placeholder}
+        disabled={disabled}
         maxLength={maxLength}
         minLength={minLength}
         readOnly={readOnly}
         spellCheck={spellCheck}
-      />
+      ></textarea>
     </Label>
   );
 }
 
-export default TextInput;
+export default TextareaInput;
