@@ -1,4 +1,4 @@
-import { useForm } from "../../hooks/form-hook";
+import { useForm } from "../../hooks/useForm";
 import Label from "../Label";
 import styles from "./RadioInput.module.css";
 

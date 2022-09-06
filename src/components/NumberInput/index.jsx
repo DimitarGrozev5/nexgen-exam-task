@@ -1,4 +1,4 @@
-import { useForm } from "../../hooks/form-hook";
+import { useForm } from "../../hooks/useForm";
 import Label from "../Label";
 import styles from "./NumberInput.module.css";
 
@@ -38,17 +38,17 @@ function NumberInput({
 
   // Setup a change handler, to transform the Input value
   // TODO: Allow the user to input just a minus sign
-  const changeHandler = (event) => inputOnChange(+event.target.value);
+  const changeHandler = (event) => inputOnChange(Number(event.target.value));
 
   // Setup error message
   const errMsg = inputError ? errorMsg : "";
 
   // Function to handle the increment and decrement buttons
   const increment = (dir) => () => {
-    if (isNaN(+inputValue)) {
+    if (isNaN(Number(inputValue))) {
       inputOnChange(dir);
     }
-    inputOnChange(+inputValue + dir);
+    inputOnChange(Number(inputValue) + dir);
   };
 
   return (

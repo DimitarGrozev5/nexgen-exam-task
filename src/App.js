@@ -1,6 +1,7 @@
+import { useId, useState } from "react";
+
 import "./App.css";
 import TextInput from "./components/TextInput";
-import { useId, useState } from "react";
 import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PaswordInput";
 import SearchInput from "./components/SearchInput";
@@ -13,7 +14,7 @@ import TextareaInput from "./components/TextareaInput";
 import Form from "./components/Form";
 import FormGroup from "./components/FormGroup";
 import Button from "./components/Button";
-import { useHttpClient } from "./hooks/http-client";
+import { useHTTPClient } from "./hooks/useHTTPClient";
 import Modal from "./components/Modal";
 import FileInput from "./components/FileInput";
 
@@ -24,14 +25,14 @@ function App() {
   // Control Form dynamci content
   const [addExtraTextarea, setAddExtraTextarea] = useState(false);
 
+  // Setup state for the information modal
+  const [msgModal, setMsgModal] = useState(null);
+
   // Get the http client
-  const { isLoading, error, clearError, sendRequest } = useHttpClient();
+  const { isLoading, error, clearError, sendRequest } = useHTTPClient();
 
   // Change the text of the submit button, depending on the load status
   const submitText = isLoading ? "Loading..." : "Submit";
-
-  // Setup state for the information modal
-  const [msgModal, setMsgModal] = useState(null);
 
   // Setup a handler for the form submit event
   const submitHandler = async (formRawData) => {
@@ -44,7 +45,7 @@ function App() {
     try {
       // Send a post request with the form data
       await sendRequest.post(
-        "https://hookb.in/" + process.env.REACT_APP_POST_BIN_URL,
+        `https://hookb.in/${process.env.REACT_APP_POST_BIN_URL}`,
         formData
       );
 
@@ -55,7 +56,7 @@ function App() {
           <a
             target="_blank"
             rel="noreferrer"
-            href={"https://hookbin.com/" + process.env.REACT_APP_POST_BIN_URL}
+            href={`https://hookbin.com/${process.env.REACT_APP_POST_BIN_URL}`}
           >
             hookbin.com
           </a>

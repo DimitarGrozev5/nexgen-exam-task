@@ -1,4 +1,4 @@
-import { useFormData } from "../../hooks/form-hook";
+import { useFormData } from "../../hooks/useForm";
 import { FormContext } from "./form-context";
 import styles from "./Form.module.css";
 
@@ -19,7 +19,7 @@ function Form({ id, onSubmit, children }) {
     // console.log(formData.isValid());
     // console.log(formData.getVals());
 
-    if (onSubmit && formData.isValid()) {
+    if (formData.isValid() && onSubmit) {
       onSubmit(formData.getVals());
     }
   };

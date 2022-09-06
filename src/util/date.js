@@ -15,5 +15,5 @@ export const dateToInput = (date) => {
 
 export const inputToDate = (input) => {
   const [y, m, d] = input.split("-");
-  return new Date(+y, +m - 1, +d);
+  return new Date(Number(y), Number(m) - 1, Number(d));
 };

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import { useForm } from "../../hooks/form-hook";
+import { useForm } from "../../hooks/useForm";
 import Label from "../Label";
 import Dragable from "./Dragable";
 import styles from "./FileInput.module.css";
@@ -44,7 +44,7 @@ function FileInput({
   const [fileError, setFileError] = useState("");
   useEffect(() => {
     let timer;
-    if (fileError) {
+    if (fileError !== "") {
       timer = setTimeout(() => {
         setFileError("");
       }, 3000);

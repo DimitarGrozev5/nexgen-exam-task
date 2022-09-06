@@ -33,6 +33,14 @@ html {
   color: #590ba2;
 }
 
+@media screen and (min-width: 1400px) {
+  .App {
+    width: 70%;
+    margin: auto;
+    margin-top: 10rem;
+  }
+}
+
 @media screen and (max-width: 950px) {
   .App {
     width: 95%;
@@ -40,7 +48,6 @@ html {
     margin-top: 1rem;
   }
 }
-
 
 @media screen and (max-width: 400px) {
   .App {
