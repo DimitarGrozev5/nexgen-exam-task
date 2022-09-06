@@ -43,3 +43,9 @@ My solution is the following:
 - Every **Input** Component also can accept an _error message_ and a _validator function_. These values will be used for input validation.
 
 - A custom `useHTTPClient` hook is used to send and fetch data
+
+## CSS Styling
+
+The CSS layout relies heavily on _Flex_ and _Grid_. It uses _@media_ queries to provide a responsive design. _@media_ breakpoints are selected, in order to provide for a consistent user experience, across various device widths.
+
+The CSS targetс the current versions of major browsers. Support for older browsers can be added.
