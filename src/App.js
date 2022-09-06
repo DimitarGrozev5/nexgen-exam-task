@@ -19,18 +19,14 @@ import Modal from './components/Modal';
 import FileInput from './components/FileInput';
 import {
   between,
-  greatherThan,
   isEmailLike,
   isLongerThan,
-  isMobilePhone,
   isTruthy,
-  lessThan,
 } from './util/validators/common';
 import {
   confirmPassword,
   isValidPassword,
 } from './util/validators/password-validator';
-import { all } from './util/validators/combinators';
 import { validEmailsList } from './util/validators/multiple-email';
 
 function App() {

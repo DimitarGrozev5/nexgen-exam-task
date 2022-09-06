@@ -1,12 +1,12 @@
-export const all = (...validators) =>
-  function (val) {
-    return validators.reduce(
-      (result, validator) => result && validator.call(this, val),
+export const all =
+  (...validators) =>
+  (ctx, val) =>
+    validators.reduce(
+      (result, validator) => result && validator(ctx, val),
       true
     );
-  };
 
-export const some = (...validators) =>
-  function (val) {
-    return validators.some((validator) => validator.call(this, val));
-  };
+export const some =
+  (...validators) =>
+  (val) =>
+    validators.some((validator) => validator.call(this, val));
