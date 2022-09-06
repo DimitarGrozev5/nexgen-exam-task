@@ -19,15 +19,30 @@ export const isLongerThan = (len) => (val) => {
 export const isEmailLike = () => (val) =>
   /^.+@[a-zA-Z-0-9]+\..{2,}$/gm.test(val);
 
-// Check that the value includes the char
-export const includes = (char) => (val) => val.includes(char);
+// Is Mobile phone
+export const isMobilePhone = () => (val) =>
+  /^(\+359|0) {0,1}(8|9)[1-9]([0-9]{7}|[0-9] [0-9]{2} [0-9]{2} [0-9]{2}|[0-9] [0-9]{3} [0-9]{3}| [0-9]{2} [0-9]{2} [0-9]{3}| [0-9]{3} [0-9]{4})$/g.test(
+    val
+  );
 
 // Check that the value is equal to other field in the Form
-export const isEqualTo = (name) =>
+export const isEqualToField = (name) =>
   function (val) {
-    console.log(this[name]);
     return this[name] === val;
   };
 
 // Check regex
 export const vRegEx = (regex) => (val) => regex.test(val);
+
+// Check number
+export const greatherThan = (num) => (val) => val > num;
+export const lessThan = (num) => (val) => val < num;
+
+export const between = (min, max) => (val) =>
+  greatherThan(min)(val) && lessThan(max)(val);
+
+// Check for equality
+export const isEqualTo = (val1) => (val2) => val1 === val2;
+
+// Check for some value
+export const isTruthy = () => (val) => !!val;

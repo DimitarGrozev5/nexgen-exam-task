@@ -17,11 +17,21 @@ import Button from './components/Button';
 import { useHTTPClient } from './hooks/useHTTPClient';
 import Modal from './components/Modal';
 import FileInput from './components/FileInput';
-import { isEmailLike, isLongerThan } from './util/validators/common';
+import {
+  between,
+  greatherThan,
+  isEmailLike,
+  isLongerThan,
+  isMobilePhone,
+  isTruthy,
+  lessThan,
+} from './util/validators/common';
 import {
   confirmPassword,
   isValidPassword,
 } from './util/validators/password-validator';
+import { all } from './util/validators/combinators';
+import { validEmailsList } from './util/validators/multiple-email';
 
 function App() {
   // Generate an ID for the Form
@@ -134,6 +144,8 @@ function App() {
               label="Enter a number (number input):"
               name="form-number"
               placeholder="Enter your value"
+              errorMsg="Number is out of bounds"
+              validator={between(3, 10)}
               // initValue={15}
             />
 
@@ -148,7 +160,7 @@ function App() {
               label="Select one of these options! (radio input):"
               name="test-radio"
               errorMsg="Some radio error!"
-              validator={(val) => !!val}
+              validator={isTruthy()}
               options={[
                 { val: 'ok', label: 'OK' },
                 { val: 'no', label: 'No' },
@@ -161,7 +173,7 @@ function App() {
               label="Give me your telephone (tel input):"
               name="form-tel"
               errorMsg="Invalid phone!"
-              validator={(val) => val.length > 0}
+              validator={isLongerThan(6)}
               placeholder="088 123 1234"
               // initValue="Test"
             />
@@ -170,7 +182,7 @@ function App() {
               label="Date of birth (date input):"
               name="form-date"
               errorMsg="Please enter date!"
-              validator={(val) => !!val}
+              validator={isTruthy()}
               // initValue={new Date()}
             />
           </FormGroup>
@@ -180,7 +192,7 @@ function App() {
               label="What's on your mind? (textarea):"
               name="form-textarea"
               errorMsg="Some textarea error!"
-              validator={(val) => val.length > 0}
+              validator={isLongerThan(0)}
               placeholder="Enter your value"
               // initValue="Test"
             />
@@ -205,7 +217,7 @@ function App() {
               label="I want two emails (multiple email input):"
               name="form1-email"
               errorMsg="More email for spam please!"
-              validator={(val) => val.length > 1}
+              validator={validEmailsList(1)}
               placeholder="Enter your value"
               multiple
               // initValue={["test1", "test2"]}
@@ -217,7 +229,7 @@ function App() {
               label="Select a file (file input):"
               name="form-file"
               errorMsg="Please input a file"
-              validator={(val) => val?.length === 1}
+              validator={isLongerThan(0)}
               accept={['.css', '.js']}
             />
           </FormGroup>
