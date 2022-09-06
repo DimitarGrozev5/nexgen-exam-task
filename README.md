@@ -3,7 +3,7 @@
 ## Check if the post bin is still active
 
 - First go to [HookBin](https://hookbin.com/YVkaKJalYbUQjy0QmeZa) to check if the **_post bin_** is still active
-- If the bin is not active, you will need to create a new bin, by going to [HookBin](https://hookbin.com/) and clicking on _CREATE NEW ENDPOIN_
+- If the bin is not active, you will need to create a new bin, by going to [HookBin](https://hookbin.com/) and clicking on _CREATE NEW ENDPOINT_
 - Copy the _bin **id**_ to the `.env` file
 
 ## Starting the App
@@ -21,13 +21,13 @@ The App posts data to a _post bin_ - [HookBin](https://hookbin.com/)
 
 ## App structure
 
-The App tries to solve three problems, related to Form creation, state managment and data posting:
+The App tries to solve three problems, related to Forms:
 
 1. Upgrade the default _html input elements_ to provide a consistent development and user experience
 
-2. Finding a way to build a Form and manage its state, that minimizes code duplication and allows for simple development of forms
+2. Find a way to build a Form and manage its state, that minimizes code duplication and allows for simple development of forms
 
-3. Sending data to a remote server, while again minimizing code duplication and allowing for user feedback
+3. Build a function that takes care of the configuring `fetch` requests, in order to again minimize code and logic duplication
 
 My solution is the following:
 
@@ -41,3 +41,5 @@ My solution is the following:
 - The **Form** Component accepts an _onSubmit_ function, that will be called when the user submits the form, with an object of key-value pairs - { [inputName]: inputValue }
 
 - Every **Input** Component also can accept an _error message_ and a _validator function_. These values will be used for input validation.
+
+- A custom `useHTTPClient` hook is used to send and fetch data
