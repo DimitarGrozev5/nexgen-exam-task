@@ -6,6 +6,8 @@
  * Validators are called with an object, containing
  * all of the values in the Form, and the value of
  * of the current Input.
+ * 
+ * TODO: Make each validator function accept and return an error message
  */
 
 // Check if field length is greather than a provided length
