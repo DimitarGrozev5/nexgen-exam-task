@@ -15,7 +15,7 @@
 
 ## Tech Stack
 
-The project is build using _create-react-app_. Component styling is handled with _css modules_. No external libraries are used.
+The project is build using _create-react-app_. Component styling is handled with the build in _css modules_. No external libraries are used.
 
 The App posts data to a _post bin_ - [HookBin](https://hookbin.com/)
 
