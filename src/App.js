@@ -17,6 +17,11 @@ import Button from './components/Button';
 import { useHTTPClient } from './hooks/useHTTPClient';
 import Modal from './components/Modal';
 import FileInput from './components/FileInput';
+import { isEmailLike, isLongerThan } from './util/validators/common';
+import {
+  confirmPassword,
+  isValidPassword,
+} from './util/validators/password-validator';
 
 function App() {
   // Generate an ID for the Form
@@ -84,7 +89,7 @@ function App() {
               label="Name (text input):"
               name="form-text"
               errorMsg="Please enter a value!!"
-              validator={(val) => val.length > 0}
+              validator={isLongerThan(0)}
               placeholder="First and Last"
               // initValue="Test"
             />
@@ -93,7 +98,7 @@ function App() {
               label="Email (email input):"
               name="form-email"
               errorMsg="Please enter a valid email!!"
-              validator={(val) => val.length > 0}
+              validator={isEmailLike()}
               placeholder="email@example.com"
               // initValue="Test"
             />
@@ -102,7 +107,7 @@ function App() {
               label="Password (password input):"
               name="form-password"
               errorMsg="Please enter a password!"
-              validator={(val) => val.length > 0}
+              validator={isValidPassword()}
               placeholder="**********"
               // initValue="Test"
             />
@@ -111,9 +116,7 @@ function App() {
               label="Reenter password:"
               name="form-password-2"
               errorMsg="Passwords don't match!"
-              validator={function (val) {
-                return this['form-password'] === val;
-              }}
+              validator={confirmPassword('form-password')}
               placeholder="validator here is a bit different"
               // initValue="Test"
             />
