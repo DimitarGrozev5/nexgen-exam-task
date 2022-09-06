@@ -1,13 +1,11 @@
 /**
- * A bunch of commont simple validator functions
- * that are ment to be used in Input Components,
+ * A bunch of common simple validator functions
+ * that are meаnt to be used in Input Components,
  * inside a Form Component
  *
- * Validators are called with Function.prototype.apply,
- * and are pased a value for *this*.
- * In all validators at execution time *this* will
- * point to the values of the other Input Components
- * in the Form
+ * Validators are called with an object, containing
+ * all of the values in the Form, and the value of
+ * of the current Input.
  */
 
 // Check if field length is greather than a provided length
@@ -19,7 +17,7 @@ export const isLongerThan = (len) => (ctx, val) => {
 export const isEmailLike = () => (ctx, val) =>
   /^.+@[a-zA-Z-0-9]+\..{2,}$/gm.test(val);
 
-// Is Mobile phone
+// Is BG Mobile phone
 export const isMobilePhone = () => (ctx, val) =>
   /^(\+359|0) {0,1}(8|9)[1-9]([0-9]{7}|[0-9] [0-9]{2} [0-9]{2} [0-9]{2}|[0-9] [0-9]{3} [0-9]{3}| [0-9]{2} [0-9]{2} [0-9]{3}| [0-9]{3} [0-9]{4})$/g.test(
     val

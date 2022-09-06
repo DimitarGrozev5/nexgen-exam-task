@@ -123,7 +123,7 @@ function App() {
               name="form-password-2"
               errorMsg="Passwords don't match!"
               validator={confirmPassword('form-password')}
-              placeholder="validator here is a bit different"
+              placeholder="validator here references other field"
               // initValue="Test"
             />
           </FormGroup>
