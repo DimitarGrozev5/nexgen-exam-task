@@ -203,7 +203,7 @@ function App() {
                 label="Testing dynamic adding and removing of input elements:"
                 name="form-textarea-extra"
                 errorMsg="Some textarea error!"
-                validator={(val) => val.length > 0}
+                validator={isLongerThan(3)}
                 placeholder="Enter your value"
                 // initValue="Test"
               />
